@@ -2,7 +2,7 @@
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+[![Coverage Status](https://coveralls.io/repos/github/mankal111/algebraic-manipulator/badge.svg?branch=master)](https://coveralls.io/github/mankal111/algebraic-manipulator?branch=master)
 
 Describe algebraic-manipulator here.
 
