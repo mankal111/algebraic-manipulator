@@ -14,7 +14,6 @@ class Demo extends Component {
   }
 
   formulaChanged(newFormula) {
-    console.log(newFormula);
     this.setState({componentFormula: newFormula});
   }
 
