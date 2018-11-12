@@ -9,7 +9,7 @@ export default class extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState(
       {
         initialFormula: this.props.formula,
@@ -18,10 +18,10 @@ export default class extends Component {
       () => this.props.onFormulaChange(this.state.currentFormula)
     );
   }
-
+  
   render() {
     return <div>
-      <h2>{this.state.initialFormula}</h2>
+      <h2>{this.state.currentFormula}</h2>
     </div>
   }
 }
