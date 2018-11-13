@@ -1,6 +1,6 @@
 # algebraic-manipulator
 
-[![Travis][build-badge]][build]
+[![Build Status](https://travis-ci.org/mankal111/algebraic-manipulator.svg?branch=master)](https://travis-ci.org/mankal111/algebraic-manipulator)
 [![npm package][npm-badge]][npm]
 [![Coverage Status](https://coveralls.io/repos/github/mankal111/algebraic-manipulator/badge.svg?branch=master)](https://coveralls.io/github/mankal111/algebraic-manipulator?branch=master)
 
