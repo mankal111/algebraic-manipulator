@@ -7,9 +7,20 @@ export default class extends Component {
       initialFormula: '',
       currentFormula: ''
     }
+    this.initialize = this.initialize.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.initialize()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.formula !== prevProps.formula) {
+      this.initialize();
+    }
+  }
+
+  initialize() {
     this.setState(
       {
         initialFormula: this.props.formula,
