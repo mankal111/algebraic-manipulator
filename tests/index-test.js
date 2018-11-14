@@ -1,13 +1,35 @@
 import expect from 'expect'
 import React from 'react'
-import {renderToStaticMarkup as render} from 'react-dom/server'
+import ReactDOM from 'react-dom'
 
 import Component from 'src/'
 
+var node, component, returnedFormula;
+beforeEach(function(){
+    node = document.createElement('div');
+    component = ReactDOM.render(
+      <Component
+        formula="1+1"
+        onFormulaChange={f => {returnedFormula = f}}
+      />,
+      node
+    );
+});
+
 describe('Component', () => {
-  it('contains h2', () => {
-    expect(render(
-      <Component />
-    )).toContain("h2");
+  it('renders without problems', () => {
+    expect(component).toExist();
+  })
+
+  it('before any action, onFormulaChange returns the props formula', () => {
+    expect(returnedFormula).toEqual("1+1");
+    component = ReactDOM.render(
+      <Component
+        formula="1+1+1"
+        onFormulaChange={f => {returnedFormula = f}}
+      />,
+      node
+    );
+    expect(returnedFormula).toEqual("1+1+1");
   })
 })
