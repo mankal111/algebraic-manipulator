@@ -21,6 +21,7 @@
     "deploy": "gh-pages -d demo/dist"
   },
   "dependencies": {
+    "eslint-plugin-react": "^7.11.1",
     "mathjs": "^5.2.3"
   },
   "peerDependencies": {
