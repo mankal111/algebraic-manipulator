@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom'
 
 import Component from 'src/'
 
-var node, component, returnedFormula;
-beforeEach(function(){
+let node, component, returnedFormula;
+beforeEach(() => {
     node = document.createElement('div');
     component = ReactDOM.render(
       <Component
