@@ -31,7 +31,7 @@ export default class extends Component {
   }
   
   render() {
-    return <div>
+    return <div className="formulaContainer">
       <h2>{this.state.currentFormula}</h2>
     </div>
   }
