@@ -1,7 +1,6 @@
 import expect from 'expect'
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import Component from 'src/'
 
 let node, component, returnedFormula;
@@ -21,7 +20,7 @@ describe('Component', () => {
     expect(component).toExist();
   })
 
-  it('before any action, onFormulaChange returns the props formula', () => {
+  it('should call onFormulaChange with the props formula, before any other action', () => {
     expect(returnedFormula).toEqual("1+1");
     component = ReactDOM.render(
       <Component
@@ -31,5 +30,9 @@ describe('Component', () => {
       node
     );
     expect(returnedFormula).toEqual("1+1+1");
+  })
+
+  it('should render the right amount of divs, one for each first level node', () => {
+    expect(node.getElementsByClassName('formulaContainer')[0].children.length).toEqual(1);
   })
 })
