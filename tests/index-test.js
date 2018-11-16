@@ -39,7 +39,7 @@ describe('Component', () => {
   it('should render a div with the correct class', () => {
     expect(
       node.getElementsByClassName('formulaContainer')[0]
-        .getElementsByClassName('addOperation')
+        .getElementsByClassName('addOperator')
         .length
     ).toEqual(1);
     component = ReactDOM.render(
@@ -51,7 +51,7 @@ describe('Component', () => {
     );
     expect(
       node.getElementsByClassName('formulaContainer')[0]
-        .getElementsByClassName('addOperation')
+        .getElementsByClassName('addOperator')
         .length
     ).toEqual(2);
   })

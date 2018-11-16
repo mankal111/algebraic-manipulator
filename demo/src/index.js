@@ -8,7 +8,7 @@ class Demo extends Component {
     super(props);
     this.state = {
       componentFormula: '',
-      initialFormula: "2y + 4x = 5"
+      initialFormula: "2 + 4 + 3"
     }
     this.onInputChange = this.onInputChange.bind(this);
     this.formulaChanged = this.formulaChanged.bind(this);
