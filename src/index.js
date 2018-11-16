@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Expression from './Expression'
 import math from 'mathjs'
 
 export default class extends Component {
@@ -31,28 +32,10 @@ export default class extends Component {
       () => this.props.onFormulaChange(this.state.currentFormula)
     );
   }
-
-  convertNodeToElement(node) {
-    switch (node.type) {
-      case 'OperatorNode':
-        switch (node.op) {
-          case '+':
-            return <span className="operatorExpression">
-              {this.convertNodeToElement(node.args[0])}<span className="addOperator">+</span>{this.convertNodeToElement(node.args[1])}
-            </span>;
-          default:
-            return <span>*</span>;
-        }
-      case 'ConstantNode':
-        return <span className="constant">{node.value}</span>;
-      default:
-        return <span>*</span>;
-    }
-  }
   
   render() {
     return <div className="formulaContainer">
-      {this.state.expressionTree && this.convertNodeToElement(this.state.expressionTree)}
+      {this.state.expressionTree && <Expression treeRoot={this.state.expressionTree} />}
     </div>
   }
 }
