@@ -35,4 +35,12 @@ describe('Component', () => {
   it('should render the right amount of divs, one for each first level node', () => {
     expect(node.getElementsByClassName('formulaContainer')[0].children.length).toEqual(1);
   })
+
+  it('should render a div with the correct class', () => {
+    expect(
+      node.getElementsByClassName('formulaContainer')[0]
+        .getElementsByClassName('addOperation')
+        .length
+    ).toEqual(1);
+  })
 })
