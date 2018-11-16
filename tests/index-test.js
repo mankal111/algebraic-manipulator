@@ -42,5 +42,17 @@ describe('Component', () => {
         .getElementsByClassName('addOperation')
         .length
     ).toEqual(1);
+    component = ReactDOM.render(
+      <Component
+        formula="1+1+1"
+        onFormulaChange={f => {returnedFormula = f}}
+      />,
+      node
+    );
+    expect(
+      node.getElementsByClassName('formulaContainer')[0]
+        .getElementsByClassName('addOperation')
+        .length
+    ).toEqual(2);
   })
 })
