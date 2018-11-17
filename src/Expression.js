@@ -18,13 +18,25 @@ export default class Expression extends Component {
               <span className="addOperator">+</span>
               <Expression treeRoot={node.args[1]} />
             </span>;
-          default:
-            return <span>*</span>;
+          case '-':
+            return <span className="operatorExpression">
+              <Expression treeRoot={node.args[0]} />
+              <span className="subOperator">-</span>
+              <Expression treeRoot={node.args[1]} />
+            </span>;
+          case '*':
+            return <span className="operatorExpression">
+              <Expression treeRoot={node.args[0]} />
+              <span className="multiplyOperator">·</span>
+              <Expression treeRoot={node.args[1]} />
+            </span>;
         }
+      case 'ParenthesisNode':
+        return <span className="parenthesisExpression">(<Expression treeRoot={node.content} />)</span>
       case 'ConstantNode':
-        return <span className="constant">{node.value}</span>;
-      default:
-        return <span>*</span>;
+        return <span className="constantNode">{node.value}</span>;
+      case 'SymbolNode':
+        return <span className="symbolNode">{node.name}</span>;
     }
   }
 }
