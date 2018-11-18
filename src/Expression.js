@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Operator from './Operator'
 
 export default class Expression extends Component {
     constructor(props) {
@@ -11,26 +12,11 @@ export default class Expression extends Component {
     const node = this.props.treeRoot;
     switch (node.type) {
       case 'OperatorNode':
-        switch (node.op) {
-          case '+':
             return <span className="operatorExpression">
               <Expression treeRoot={node.args[0]} />
-              <span className="addOperator">+</span>
+              <Operator node={node} />
               <Expression treeRoot={node.args[1]} />
             </span>;
-          case '-':
-            return <span className="operatorExpression">
-              <Expression treeRoot={node.args[0]} />
-              <span className="subOperator">-</span>
-              <Expression treeRoot={node.args[1]} />
-            </span>;
-          case '*':
-            return <span className="operatorExpression">
-              <Expression treeRoot={node.args[0]} />
-              <span className="multiplyOperator">·</span>
-              <Expression treeRoot={node.args[1]} />
-            </span>;
-        }
       case 'ParenthesisNode':
         return <span className="parenthesisExpression">(<Expression treeRoot={node.content} />)</span>
       case 'ConstantNode':
