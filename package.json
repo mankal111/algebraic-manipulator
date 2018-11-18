@@ -30,6 +30,7 @@
   "devDependencies": {
     "gh-pages": "^2.0.1",
     "nwb": "0.23.x",
+    "nwb-less": "^0.7.1",
     "react": "^16.6.1",
     "react-dom": "^16.6.1"
   },
