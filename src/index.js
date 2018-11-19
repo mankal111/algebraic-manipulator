@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Expression from './Expression'
 import math from 'mathjs'
+import './index.less'
 
 export default class extends Component {
   constructor(props) {

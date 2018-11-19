@@ -15,17 +15,8 @@ beforeEach(() => {
     );
 });
 
-describe('Component', () => {
+describe('Expression', () => {
   it('renders without problems', () => {
     expect(component).toExist();
-  })
-
-  it('should render a div with the correct class', () => {
-    expect(node.getElementsByClassName('parenthesisExpression').length).toEqual(1);
-    expect(node.getElementsByClassName('addOperator').length).toEqual(1);
-    expect(node.getElementsByClassName('subtractOperator').length).toEqual(1);
-    expect(node.getElementsByClassName('multiplyOperator').length).toEqual(2);
-    expect(node.getElementsByClassName('constantNode').length).toEqual(3);
-    expect(node.getElementsByClassName('symbolNode').length).toEqual(2);
   })
 })

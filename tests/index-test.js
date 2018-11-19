@@ -15,7 +15,7 @@ beforeEach(() => {
     );
 });
 
-describe('Component', () => {
+describe('MainComponent', () => {
   it('renders without problems', () => {
     expect(component).toExist();
   })

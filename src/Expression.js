@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Operator from './Operator'
+import OperatorExpression from './OperatorExpression'
 
 export default class Expression extends Component {
     constructor(props) {
@@ -12,11 +12,7 @@ export default class Expression extends Component {
     const node = this.props.treeRoot;
     switch (node.type) {
       case 'OperatorNode':
-            return <span className="operatorExpression">
-              <Expression treeRoot={node.args[0]} />
-              <Operator node={node} />
-              <Expression treeRoot={node.args[1]} />
-            </span>;
+            return <OperatorExpression node={node} />;
       case 'ParenthesisNode':
         return <span className="parenthesisExpression">(<Expression treeRoot={node.content} />)</span>
       case 'ConstantNode':
