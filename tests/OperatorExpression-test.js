@@ -5,13 +5,12 @@ import OperatorExpression from 'src/OperatorExpression'
 import math from 'mathjs'
 import ReactTestUtils from 'react-dom/test-utils'
 
-let node, component, reactComponent;
+let node, component;
 beforeEach(() => {
     node = document.createElement('div');
     component = ReactDOM.render(
       <OperatorExpression
         node={math.parse("2x + (4 - 3y)")}
-        ref={node => reactComponent = node}
       />,
       node
     );
@@ -32,10 +31,15 @@ describe('OperatorExpression', () => {
   })
 
   it('should add "focus" class after operator click', () => {
-    const addOperator = node.getElementsByClassName('operatorExpression')[0];
-    expect(addOperator.classList.contains('focus')).toEqual(false);
-    // need to find a way to simulate a click event
-    // ReactTestUtils.Simulate.click(reactComponent.querySelector('.Operator'));
-    // expect(addOperator.classList.contains('focus')).toEqual(true);
+    component = ReactTestUtils.renderIntoDocument(
+      <OperatorExpression
+        node={math.parse("2 + 4")}
+      />
+    );
+    const operatorExpression = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'operatorExpression')[0];
+    const operator = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'Operator')[0];
+    expect(operatorExpression.classList.contains('focus')).toEqual(false);
+    ReactTestUtils.Simulate.click(operator);
+    expect(operatorExpression.classList.contains('focus')).toEqual(true);
   })
 })
