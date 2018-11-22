@@ -22,7 +22,7 @@ export default class OperatorExpression extends Component {
       return <span className={`operatorExpression ${this.state.focus ? 'focus' : ''}`}>
         <Expression treeRoot={node.args[0]} />
         <span
-          className={`${node.fn}Operator Operator`}
+          className={`${node.fn}Operator operator`}
           onClick={this.handleClick}
         >
           {opSymbol}
