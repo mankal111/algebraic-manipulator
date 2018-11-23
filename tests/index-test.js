@@ -21,7 +21,7 @@ describe('MainComponent', () => {
   })
 
   it('should call onFormulaChange with the props formula, before any other action', () => {
-    expect(returnedFormula).toEqual("1+1");
+    expect(returnedFormula).toEqual("1 + 1");
     component = ReactDOM.render(
       <Component
         formula="1+1+1"
@@ -29,6 +29,6 @@ describe('MainComponent', () => {
       />,
       node
     );
-    expect(returnedFormula).toEqual("1+1+1");
+    expect(returnedFormula).toEqual("1 + 1 + 1");
   })
 })
