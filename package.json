@@ -21,6 +21,7 @@
     "deploy": "gh-pages -d demo/dist"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "mathjs": "^5.2.3"
   },
   "peerDependencies": {
