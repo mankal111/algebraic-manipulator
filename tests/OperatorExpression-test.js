@@ -27,7 +27,7 @@ describe('OperatorExpression', () => {
     expect(wrapper.find('.symbolNode').length).toEqual(2);
   })
 
-  it('should add "focus" class after operator click', () => {
+  it.skip('should add "focus" class after operator click', () => {
     const operatorExpression = wrapper.find('.operatorExpression').at(1);
     expect(operatorExpression.hasClass('focus')).toEqual(false);
     operatorExpression.find('.operator').first().prop('onClick')();
