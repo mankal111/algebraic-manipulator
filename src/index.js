@@ -8,9 +8,11 @@ export default class extends Component {
     super(props);
     this.state = {
       initialFormula: '',
-      currentFormula: ''
+      currentFormula: '',
+      selectedNodePath: ''
     }
     this.initialize = this.initialize.bind(this);
+    this.selectNode = this.selectNode.bind(this);
   }
 
   componentDidMount() {
@@ -24,19 +26,31 @@ export default class extends Component {
   }
 
   initialize() {
+    const expressionTree = math.parse(this.props.formula);
     this.setState(
       {
-        initialFormula: this.props.formula,
-        currentFormula: this.props.formula,
-        expressionTree: math.parse(this.props.formula)
+        initialFormula: expressionTree,
+        currentFormula: expressionTree
       },
-      () => this.props.onFormulaChange(this.state.currentFormula)
+      () => this.props.onFormulaChange(this.state.currentFormula.toString())
     );
+  }
+
+  selectNode(path) {
+    this.setState({selectedNodePath: path});
   }
   
   render() {
     return <div className="formulaContainer">
-      {this.state.expressionTree && <Expression treeRoot={this.state.expressionTree} />}
+      {
+        this.state.currentFormula && 
+        <Expression
+          treeRoot={this.state.currentFormula}
+          path='Root'
+          selectNode={this.selectNode}
+          selectedNodePath={this.state.selectedNodePath}
+        />
+      }
     </div>
   }
 }
