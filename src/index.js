@@ -1,7 +1,10 @@
-import React, {Component} from 'react'
-import Expression from './Expression'
-import math from 'mathjs'
-import './index.less'
+import React, {Component} from 'react';
+import configureStore from './store/configureStore';
+import Expression from './Expression';
+import math from 'mathjs';
+import './index.less';
+
+const store = configureStore();
 
 export default class extends Component {
   constructor(props) {
@@ -41,7 +44,8 @@ export default class extends Component {
   }
   
   render() {
-    return <div className="formulaContainer">
+    return (<Provider store={store}>
+      <div className="formulaContainer">
       {
         this.state.currentFormula && 
         <Expression
@@ -51,6 +55,7 @@ export default class extends Component {
           selectedNodePath={this.state.selectedNodePath}
         />
       }
-    </div>
+      </div>
+    </Provider>);
   }
 }
