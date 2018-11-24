@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import {SET_EXPRESSION_TREE, SET_SELECTED_EXPRESSION_PATH} from '../actions/actionTypes';
 
-export default formula = (state = initialState.expression, action) => {
+export default (state = initialState.expression, action) => {
     switch (action.type) {
         case SET_EXPRESSION_TREE:
             return {...state, expressionTree: action.tree};

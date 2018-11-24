@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import configureStore from './store/configureStore';
+import { Provider } from 'react-redux';
 import Expression from './Expression';
 import math from 'mathjs';
 import './index.less';
