@@ -14,8 +14,6 @@ export class OperatorExpression extends Component {
         <Expression
           treeRoot={node.args[0]}
           path={this.props.path + '.args[0]'}
-          selectNode={this.props.selectNode}
-          selectedNodePath={this.props.selectedNodePath}
         />
         <span
           className={`${node.fn}Operator operator`}
@@ -26,8 +24,6 @@ export class OperatorExpression extends Component {
         <Expression
           treeRoot={node.args[1]}
           path={this.props.path + '.args[1]'}
-          selectNode={this.props.selectNode}
-          selectedNodePath={this.props.selectedNodePath}
         />
       </span>;
   }
