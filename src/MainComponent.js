@@ -12,13 +12,13 @@ export class MainComponent extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.formula !== prevProps.formula) {
       this.initialize();
-      this.props.onFormulaChange(this.props.expressionTree.toString());
     }
   }
   
   initialize() {
     const expressionTree = math.parse(this.props.formula);
     this.props.setExpressionTree(expressionTree);
+    this.props.onFormulaChange(expressionTree.toString());
   }
   
   render() { 
