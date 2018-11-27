@@ -18,9 +18,9 @@ export default class Expression extends Component {
             />)
           </span>
       case 'ConstantNode':
-        return <span className="constantNode">{node.value}</span>;
+        return <span className="constantExpression">{node.value}</span>;
       case 'SymbolNode':
-        return <span className="symbolNode">{node.name}</span>;
+        return <span className="symbolExpression">{node.name}</span>;
       default:
         return null;
     }
