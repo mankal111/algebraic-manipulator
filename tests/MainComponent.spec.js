@@ -17,7 +17,7 @@ describe('MainComponent', () => {
 
   beforeEach(() => {
     props = {
-      formula: "1+1",
+      formula: "1",
       onFormulaChange: () => {}
     }
     mountedMainComponent = undefined;
@@ -31,8 +31,8 @@ describe('MainComponent', () => {
   it('calls onFormulaChange when props formula is changed', () => {
     const spy = expect.spyOn(props, 'onFormulaChange');
     mainComponent();
-    expect(spy.calls.length).toEqual(1);
-    mainComponent().setProps({ formula: "1+1+1"});
-    expect(spy).toHaveBeenCalledWith("1 + 1 + 1");
+    expect(spy).toHaveBeenCalledWith("1");
+    mainComponent().setProps({ formula: "2"});
+    expect(spy).toHaveBeenCalledWith("2");
   })
 })
