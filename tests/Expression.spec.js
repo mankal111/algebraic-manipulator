@@ -4,25 +4,13 @@ import React from 'react';
 import Expression from 'src/Expression';
 import math from 'mathjs';
 
-// let node, component;
-// beforeEach(() => {
-//     node = document.createElement('div');
-//     component = ReactDOM.render(
-//       <Expression
-//         treeRoot={math.parse("2x + (4 - 3y)")}
-//       />,
-//       node
-//     );
-// });
-
 describe('Expression', () => {
   let props;
   let wrapper;
   const expressionComponent = () => {
     if (!wrapper) {
       wrapper = shallow(
-        <Expression {...props} />,
-        {context: {store: () => {}}}
+        <Expression {...props} />
       );
     }
     return wrapper;
