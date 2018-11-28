@@ -7,37 +7,35 @@ import './OperatorExpression.less'
 export class OperatorExpression extends Component {
 
   render() {
-      const node = this.props.node;
-      const opSymbol = node.op === '*' ? '·' : node.op; 
-      const isSelected = this.props.selectedExpressionPath === this.props.path;
-      return <span className={`operatorExpression ${isSelected ? 'focus' : ''}`}>
-        <Expression
-          treeRoot={node.args[0]}
-          path={this.props.path + '.args[0]'}
-        />
-        <span
-          className={`${node.fn}Operator operator`}
-          onClick={this.props.selectExpression}
-        >
-          {opSymbol}
-        </span>
-        <Expression
-          treeRoot={node.args[1]}
-          path={this.props.path + '.args[1]'}
-        />
-      </span>;
+    const node = this.props.node;
+    const opSymbol = node.op === '*' ? '·' : node.op; 
+    const isSelected = this.props.selectedExpressionPath === this.props.path;
+    return <span className={`operatorExpression ${isSelected ? 'focus' : ''}`}>
+      <Expression
+        treeRoot={node.args[0]}
+        path={this.props.path + '.args[0]'}
+      />
+      <span
+        className={`${node.fn}Operator operator`}
+        onClick={this.props.selectExpression}
+      >
+        {opSymbol}
+      </span>
+      <Expression
+        treeRoot={node.args[1]}
+        path={this.props.path + '.args[1]'}
+      />
+    </span>;
   }
 }
 
-
-
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     selectedExpressionPath: state.expression.selectedExpressionPath
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     selectExpression: () => dispatch(setSelectedExpressionPath(ownProps.path)) 
   }
