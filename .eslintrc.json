@@ -1,9 +1,10 @@
-module.exports = {
+{
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "commonjs": true
     },
-    "extends": "eslint:recommended",
+    "extends": "airbnb",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -11,7 +12,10 @@ module.exports = {
         "ecmaVersion": 2018
     },
     "plugins": [
-        "react"
+        "react",
+        "eslint-plugin-jsx-a11y",
+        "eslint-plugin-import",
+        "eslint-plugin-react"
     ],
     "rules": {
         "indent": [
@@ -31,4 +35,4 @@ module.exports = {
             "always"
         ]
     }
-};
+}
