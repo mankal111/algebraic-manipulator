@@ -1,47 +1,46 @@
-import {connect} from 'react-redux';
-import {setSelectedExpressionPath} from './actions/expressionActions';
-import React, {Component} from 'react'
-import Expression from './Expression'
-import './OperatorExpression.less'
+import { connect } from 'react-redux';
+import React from 'react';
+import { setSelectedExpressionPath } from './actions/expressionActions';
+import Expression from './Expression';
+import './OperatorExpression.less';
 
-export class OperatorExpression extends Component {
-
-  render() {
-    const node = this.props.node;
-    const opSymbol = node.op === '*' ? '·' : node.op; 
-    const isSelected = this.props.selectedExpressionPath === this.props.path;
-    return <span className={`operatorExpression ${isSelected ? 'focus' : ''}`}>
+export const OperatorExpression = (props) => {
+  const { node } = props;
+  const opSymbol = node.op === '*' ? '·' : node.op; 
+  const isSelected = (props.selectedExpressionPath === props.path);
+  return (
+    <span className={`operatorExpression ${isSelected ? 'focus' : ''}`}>
       <Expression
         treeRoot={node.args[0]}
-        path={this.props.path + '.args[0]'}
+        path={`${props.path}.args[0]`}
       />
       <span
         className={`${node.fn}Operator operator`}
-        onClick={this.props.selectExpression}
+        onClick={props.selectExpression}
       >
         {opSymbol}
       </span>
       <Expression
         treeRoot={node.args[1]}
-        path={this.props.path + '.args[1]'}
+        path={`${props.path}.args[1]`}
       />
-    </span>;
-  }
+    </span>
+  );
 }
 
-export const mapStateToProps = state => {
+export const mapStateToProps = (state) => {
   return {
     selectedExpressionPath: state.expression.selectedExpressionPath
-  }
-}
+  };
+};
 
 export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     selectExpression: () => dispatch(setSelectedExpressionPath(ownProps.path)) 
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(OperatorExpression)
+  mapDispatchToProps,
+)(OperatorExpression);
