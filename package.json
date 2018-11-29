@@ -21,6 +21,7 @@
     "deploy": "gh-pages -d demo/dist"
   },
   "dependencies": {
+    "eslint": "^5.9.0",
     "lodash": "^4.17.11",
     "mathjs": "^5.2.3",
     "react-redux": "^5.1.1",
