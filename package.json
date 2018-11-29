@@ -21,7 +21,11 @@
     "deploy": "gh-pages -d demo/dist"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "lodash": "^4.17.11",
     "mathjs": "^5.2.3",
     "react-redux": "^5.1.1",
