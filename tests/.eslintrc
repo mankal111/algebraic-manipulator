@@ -3,20 +3,11 @@
     "mocha": true
   },
   "extends": "airbnb",
-  "plugins": ["react"],
+  "plugins": ["react", "es2015"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
       "modules": true
     }
-  },
-  "rules": {
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions":
-          [".spec.js"]
-      }
-    ]
   }
 }
