@@ -1,8 +1,8 @@
 import expect from 'expect';
-import { shallow } from '../enzyme';
 import React from 'react';
-import Expression from 'src/Expression';
 import math from 'mathjs';
+import { shallow } from '../enzyme';
+import Expression from '../src/Expression';
 
 describe('Expression', () => {
   let props;
