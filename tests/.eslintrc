@@ -9,5 +9,14 @@
       "jsx": true,
       "modules": true
     }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions":
+          [".spec.js"]
+      }
+    ]
   }
 }
