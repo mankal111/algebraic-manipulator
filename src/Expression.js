@@ -1,8 +1,7 @@
 import React from 'react';
 import OperatorExpression from './OperatorExpression';
 
-export default (props) => {
-  const { treeRoot: node, path } = props;
+export default ({ treeRoot: node, path }) => {
   const Expression = this;
   switch (node.type) {
   case 'OperatorNode':
