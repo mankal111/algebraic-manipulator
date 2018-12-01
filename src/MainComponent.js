@@ -18,9 +18,9 @@ export class MainComponent extends Component {
   }
 
   initialize() {
-    const { formula, onFormulaChange } = this.props;
+    const { formula, onFormulaChange, setExpressionTreeOnState } = this.props;
     const expressionTree = math.parse(formula);
-    setExpressionTree(expressionTree);
+    setExpressionTreeOnState(expressionTree);
     onFormulaChange(expressionTree.toString());
   }
 
@@ -44,13 +44,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setExpressionTree: expressionTree => dispatch(setExpressionTree(expressionTree)),
+  setExpressionTreeOnState: expressionTree => dispatch(setExpressionTree(expressionTree)),
 });
 
 MainComponent.propTypes = {
   formula: PropTypes.string,
   onFormulaChange: PropTypes.func,
-  expressionTree: PropTypes.shape,
+  setExpressionTreeOnState: PropTypes.func.isRequired,
+  expressionTree: PropTypes.shape({}),
 };
 
 MainComponent.defaultProps = {
