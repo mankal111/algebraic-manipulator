@@ -25,3 +25,5 @@ Index.defaultProps = {
   formula: '',
   onFormulaChange: () => {},
 };
+
+export default Index;
