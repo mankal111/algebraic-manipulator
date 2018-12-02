@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow } from '../enzyme';
-import { OperatorExpression, mapDispatchToProps } from 'src/OperatorExpression';
+import { shallow } from 'enzyme';
+import { OperatorExpression, mapDispatchToProps } from '../src/OperatorExpression';
 
 describe('OperatorExpression', () => {
   let props;
@@ -9,35 +9,35 @@ describe('OperatorExpression', () => {
   const operatorExpression = () => {
     if (!wrapper) {
       wrapper = shallow(
-        <OperatorExpression {...props} />
+        <OperatorExpression {...props} />,
       );
     }
     return wrapper;
-  }
+  };
 
   beforeEach(() => {
     props = {
-      node: {op: '+', args: [{}, {}], fn: 'add'},
+      node: { op: '+', args: [{}, {}], fn: 'add' },
       path: 'some path',
       selectedExpressionPath: 'some other path',
-      selectExpression: () => {}
-    }
+      selectExpression: () => {},
+    };
     wrapper = undefined;
-  })
+  });
 
   it('always renders a span with three children', () => {
     expect(operatorExpression().children().length).toBe(3);
-  })
+  });
 
   it('converts \'*\' operator symbol to \'·\'', () => {
     props.node.op = '*';
     expect(operatorExpression().find('.operator').text()).toBe('·');
-  })
+  });
 
   it('if it has the same path with the selected one, it has the class \'focus\'', () => {
     props.selectedExpressionPath = props.path;
     expect(operatorExpression().hasClass('focus')).toBeTruthy();
-  })
+  });
 
   it('calls \'selectExpression\' callback when operation symbol is clicked', () => {
     const dispatch = expect.createSpy();
@@ -45,7 +45,7 @@ describe('OperatorExpression', () => {
     operatorExpression().find('.operator').simulate('click');
     expect(dispatch).toHaveBeenCalledWith({
       type: 'SET_SELECTED_EXPRESSION_PATH',
-      path: props.path
+      path: props.path,
     });
-  })
-})
+  });
+});
