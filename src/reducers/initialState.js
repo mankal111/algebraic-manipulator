@@ -1,6 +1,6 @@
 export default {
-    expression: {
-        expressionTree: {},
-        selectedExpressionPath: ''
-    }
+  expression: {
+    expressionTree: {},
+    selectedExpressionPath: '',
+  },
 };

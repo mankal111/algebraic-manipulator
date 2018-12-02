@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import expression from './expressionReducer';
 
 const rootReducer = combineReducers({
-    expression
+  expression,
 });
 
 export default rootReducer;

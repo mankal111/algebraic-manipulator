@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import math from 'mathjs';
-import { shallow } from '../enzyme';
+import { shallow } from 'enzyme';
 import Expression from '../src/Expression';
 
 describe('Expression', () => {
