@@ -13,10 +13,12 @@ export const Expression = ({ treeRoot: node, path }) => {
   case 'ParenthesisNode':
     return (
       <span className="parenthesisExpression">
+        (
         <Expression
           treeRoot={node.content}
           path={`${path}.content`}
         />
+        )
       </span>
     );
   case 'ConstantNode':
