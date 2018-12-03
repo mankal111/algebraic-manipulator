@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setSelectedExpressionPath } from './actions/expressionActions';
+import { setSelectedExpression } from './actions/expressionActions';
 import Expression from './Expression';
 import './OperatorExpression.less';
 
@@ -43,7 +43,7 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  selectExpression: () => dispatch(setSelectedExpressionPath(ownProps.path)),
+  selectExpression: () => dispatch(setSelectedExpression(ownProps.path, ownProps.node)),
 });
 
 OperatorExpression.propTypes = {

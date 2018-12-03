@@ -1,7 +1,7 @@
 import expect from 'expect';
 import reducer from '../../src/reducers/expressionReducer';
 import initialState from '../../src/reducers/initialState';
-import { SET_EXPRESSION_TREE, SET_SELECTED_EXPRESSION_PATH } from '../../src/actions/actionTypes';
+import { SET_EXPRESSION_TREE, SET_SELECTED_EXPRESSION } from '../../src/actions/actionTypes';
 
 describe('expression reducer', () => {
   it('returns the initial state', () => {
@@ -20,11 +20,13 @@ describe('expression reducer', () => {
 
   it('handles setSelectedExpressionPath action', () => {
     expect(reducer(initialState.expression, {
-      type: SET_SELECTED_EXPRESSION_PATH,
+      type: SET_SELECTED_EXPRESSION,
       path: 'somePath',
+      node: { name: 'someObject' },
     })).toEqual({
       ...initialState.expression,
       selectedExpressionPath: 'somePath',
+      selectedExpressionNode: { name: 'someObject' },
     });
   });
 });

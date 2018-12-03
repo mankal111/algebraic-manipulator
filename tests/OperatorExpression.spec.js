@@ -44,8 +44,9 @@ describe('OperatorExpression', () => {
     props.selectExpression = mapDispatchToProps(dispatch, props).selectExpression;
     operatorExpression().find('.operator').simulate('click');
     expect(dispatch).toHaveBeenCalledWith({
-      type: 'SET_SELECTED_EXPRESSION_PATH',
+      type: 'SET_SELECTED_EXPRESSION',
       path: props.path,
+      node: props.node,
     });
   });
 });
