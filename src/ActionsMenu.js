@@ -1,34 +1,40 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import './OperatorExpression.less';
 
-export const ActionsMenu = (props) => {
-  const {
-    actionsList,
-  } = props;
-  return (
-    <span className="actionsMenuContainer">
-      {actionsList.map(action => <span key={action}>{action}</span>)}
-    </span>
-  );
+export const actionsPerOperator = {
+  add: [],
+  multiply: [],
+  default: ['evaluate', 'commutate'],
 };
 
-export const mapStateToProps = state => ({
-});
+export const ActionsMenu = (props) => {
+  const { operatorFn } = props;
+  const actionsList = [
+    ...actionsPerOperator.default,
+    ...actionsPerOperator[operatorFn],
+  ];
+  return operatorFn && (
+    <div className="actionsMenuContainer">
+      {actionsList.map(action => <span key={action}>{action}</span>)}
+    </div>
+  );
+}
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapStateToProps = state => ({
+  operatorFn: _.get(state, 'expression.selectedExpressionNode.fn'),
 });
 
 ActionsMenu.propTypes = {
-  actionsList: PropTypes.arrayOf({}),
+  operatorFn: PropTypes.string,
 };
 
 ActionsMenu.defaultProps = {
-  actionsList: [],
-};
+  operatorFn: '',
+}
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(ActionsMenu);

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ActionsMenu } from '../src/ActionsMenu';
+import { ActionsMenu, actionsPerOperator } from '../src/ActionsMenu';
 
 describe('ActionsMenu', () => {
   let props;
@@ -17,12 +17,14 @@ describe('ActionsMenu', () => {
 
   beforeEach(() => {
     props = {
-      actionsList: ['commutative', 'evaluate'],
+      operatorFn: 'add',
     };
     wrapper = undefined;
   });
 
   it('renders a span for each action in the action list', () => {
-    expect(ActionsMenuComponent().children().length).toBe(props.actionsList.length);
+    expect(ActionsMenuComponent().children().length).toBe(
+      actionsPerOperator.default.length + actionsPerOperator[props.operatorFn].length,
+    );
   });
 });
