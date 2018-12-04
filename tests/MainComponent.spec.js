@@ -24,8 +24,8 @@ describe('MainComponent', () => {
   });
 
   it('always renders a div', () => {
-    const divs = mainComponent().find('div');
-    expect(divs.length).toBeGreaterThan(0);
+    const container = mainComponent().find('.mainContainer');
+    expect(container).toExist();
   });
 
   it('calls onFormulaChange when props formula is changed', () => {
