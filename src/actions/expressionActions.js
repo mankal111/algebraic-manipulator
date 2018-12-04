@@ -7,3 +7,7 @@ export const setExpressionTree = tree => (
 export const setSelectedExpression = (path, node) => (
   { type: types.SET_SELECTED_EXPRESSION, path, node }
 );
+
+export const performAction = actionName => (
+  { type: types.PERFORM_ACTION, actionName }
+);

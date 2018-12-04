@@ -1,12 +1,52 @@
+import _ from 'lodash';
+import math from 'mathjs';
 import initialState from './initialState';
-import { SET_EXPRESSION_TREE, SET_SELECTED_EXPRESSION } from '../actions/actionTypes';
+import {
+  SET_EXPRESSION_TREE,
+  SET_SELECTED_EXPRESSION,
+  PERFORM_ACTION,
+} from '../actions/actionTypes';
+
+const getTrimmedPath = path => path.replace(/Root?./, '');
+
+const performActionOnTree = (state, actionName) => {
+  const newTree = state.expressionTree.cloneDeep();
+  let newNode;
+  const selectedPath = getTrimmedPath(state.selectedExpressionPath);
+  const selectedNode = state.selectedExpressionNode;
+  switch (actionName) {
+  case 'commutate':
+    newNode = new math.expression.node.OperatorNode(
+      selectedNode.op,
+      selectedNode.fn,
+      [selectedNode.args[1], selectedNode.args[0]],
+    );
+    return {
+      expressionTree: selectedPath === '' ? newNode
+        : _.set(
+          newTree,
+          selectedPath,
+          newNode,
+        ),
+      selectedExpressionNode: newNode,
+    };
+  default:
+    return { expressionTree: newTree, selectedNode };
+  }
+};
 
 export default (state = initialState.expression, action) => {
   switch (action.type) {
   case SET_EXPRESSION_TREE:
     return { ...state, expressionTree: action.tree };
   case SET_SELECTED_EXPRESSION:
-    return { ...state, selectedExpressionPath: action.path, selectedExpressionNode: action.node };
+    return {
+      ...state,
+      selectedExpressionPath: action.path,
+      selectedExpressionNode: action.node,
+    };
+  case PERFORM_ACTION:
+    return { ...state, ...performActionOnTree(state, action.actionName) };
   default:
     return state;
   }
