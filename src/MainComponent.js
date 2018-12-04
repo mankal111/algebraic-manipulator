@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import math from 'mathjs';
 import Expression from './Expression';
+import ActionsMenu from './ActionsMenu';
 import { setExpressionTree } from './actions/expressionActions';
 
 export class MainComponent extends Component {
@@ -27,13 +28,16 @@ export class MainComponent extends Component {
   render() {
     const { expressionTree } = this.props;
     return (
-      <div className="formulaContainer">
-        {
-          <Expression
-            treeRoot={expressionTree}
-            path="Root"
-          />
-        }
+      <div className="mainContainer">
+        <div className="formulaContainer">
+          {
+            <Expression
+              treeRoot={expressionTree}
+              path="Root"
+            />
+          }
+        </div>
+        <ActionsMenu />
       </div>
     );
   }
