@@ -33,7 +33,7 @@ ActionsMenu.propTypes = {
 
 ActionsMenu.defaultProps = {
   operatorFn: '',
-}
+};
 
 export default connect(
   mapStateToProps,
