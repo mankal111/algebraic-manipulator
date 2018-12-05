@@ -11,16 +11,20 @@ export const Expression = ({ treeRoot: node, path }) => {
       />
     );
   case 'ParenthesisNode':
-    return (
-      <span className="parenthesisExpression">
-        (
-        <Expression
-          treeRoot={node.content}
-          path={`${path}.content`}
-        />
-        )
-      </span>
-    );
+    return node.content.type === 'ConstantNode'
+      ? (
+        <span className="constantExpression">{node.content.value}</span>
+      )
+      : (
+        <span className="parenthesisExpression">
+          (
+          <Expression
+            treeRoot={node.content}
+            path={`${path}.content`}
+          />
+          )
+        </span>
+      );
   case 'ConstantNode':
     return <span className="constantExpression">{node.value}</span>;
   case 'SymbolNode':
