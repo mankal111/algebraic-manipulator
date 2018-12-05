@@ -15,6 +15,7 @@ describe('expression reducer', () => {
     })).toEqual({
       ...initialState.expression,
       expressionTree: 'someTree',
+      selectedExpressionNode: {},
     });
   });
 
