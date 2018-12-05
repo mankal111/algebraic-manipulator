@@ -8,7 +8,7 @@ import { performAction } from './actions/expressionActions';
 export const actionsPerOperator = {
   add: [],
   multiply: [],
-  default: ['commutate'],
+  default: ['commutate', 'evaluate'],
 };
 
 export const ActionsMenu = (props) => {

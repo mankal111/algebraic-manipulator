@@ -30,6 +30,17 @@ const performActionOnTree = (state, actionName) => {
         ),
       selectedExpressionNode: newNode,
     };
+  case 'evaluate':
+    newNode = new math.expression.node.ConstantNode(selectedNode.eval());
+    return {
+      expressionTree: selectedPath === '' ? newNode
+        : _.set(
+          newTree,
+          selectedPath,
+          newNode,
+        ),
+      selectedExpressionNode: newNode,
+    }
   default:
     return { expressionTree: newTree, selectedNode };
   }
@@ -38,7 +49,7 @@ const performActionOnTree = (state, actionName) => {
 export default (state = initialState.expression, action) => {
   switch (action.type) {
   case SET_EXPRESSION_TREE:
-    return { ...state, expressionTree: action.tree };
+    return { ...state, expressionTree: action.tree, selectedExpressionNode: {} };
   case SET_SELECTED_EXPRESSION:
     return {
       ...state,
