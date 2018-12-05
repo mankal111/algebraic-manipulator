@@ -21,29 +21,22 @@ const performActionOnTree = (state, actionName) => {
       selectedNode.fn,
       [selectedNode.args[1], selectedNode.args[0]],
     );
-    return {
-      expressionTree: selectedPath === '' ? newNode
-        : _.set(
-          newTree,
-          selectedPath,
-          newNode,
-        ),
-      selectedExpressionNode: newNode,
-    };
+    break;
   case 'evaluate':
     newNode = new math.expression.node.ConstantNode(selectedNode.eval());
-    return {
-      expressionTree: selectedPath === '' ? newNode
-        : _.set(
-          newTree,
-          selectedPath,
-          newNode,
-        ),
-      selectedExpressionNode: newNode,
-    }
+    break;
   default:
-    return { expressionTree: newTree, selectedNode };
+    break;
   }
+  return {
+    expressionTree: selectedPath === '' ? newNode
+      : _.set(
+        newTree,
+        selectedPath,
+        newNode,
+      ),
+    selectedExpressionNode: newNode,
+  };
 };
 
 export default (state = initialState.expression, action) => {
