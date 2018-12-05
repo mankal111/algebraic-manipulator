@@ -12,17 +12,17 @@ export class MainComponent extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { formula } = this.props;
+    const { formula, onFormulaChange, expressionTree } = this.props;
     if (formula !== prevProps.formula) {
       this.initialize();
     }
+    onFormulaChange(expressionTree.toString());
   }
 
   initialize() {
-    const { formula, onFormulaChange, setExpressionTreeOnState } = this.props;
+    const { formula, setExpressionTreeOnState } = this.props;
     const expressionTree = math.parse(formula);
     setExpressionTreeOnState(expressionTree);
-    onFormulaChange(expressionTree.toString());
   }
 
   render() {
