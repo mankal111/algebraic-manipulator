@@ -41,10 +41,30 @@ describe('expression reducer', () => {
       expressionTree: initialNode,
       selectedExpressionNode: initialNode,
       selectedExpressionPath: 'Root',
-    }
+    };
     expect(reducer(testState, {
       type: PERFORM_ACTION,
       actionName: 'commutate',
+    })).toEqual({
+      ...testState,
+      expressionTree: expectedNode,
+      selectedExpressionNode: expectedNode,
+    });
+  });
+
+  it('handles commutate action', () => {
+    const initialNode = math.parse('1+2');
+    const expectedNode = math.parse('3');
+    delete expectedNode.comment;
+    const testState = {
+      ...initialState.expression,
+      expressionTree: initialNode,
+      selectedExpressionNode: initialNode,
+      selectedExpressionPath: 'Root',
+    };
+    expect(reducer(testState, {
+      type: PERFORM_ACTION,
+      actionName: 'evaluate',
     })).toEqual({
       ...testState,
       expressionTree: expectedNode,
