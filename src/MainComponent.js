@@ -5,6 +5,7 @@ import math from 'mathjs';
 import Expression from './Expression';
 import ActionsMenu from './ActionsMenu';
 import { setExpressionTree } from './actions/expressionActions';
+import './MainComponent.less';
 
 export class MainComponent extends Component {
   componentDidMount() {
