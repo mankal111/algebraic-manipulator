@@ -2,7 +2,7 @@ import expect from 'expect';
 import math from 'mathjs';
 import reducer from '../../src/reducers/expressionReducer';
 import initialState from '../../src/reducers/initialState';
-import { SET_EXPRESSION_TREE, SET_SELECTED_EXPRESSION, PERFORM_ACTION } from '../../src/actions/actionTypes';
+import { setExpressionTree, setSelectedExpression, performAction } from '../../src/actions/expressionActions';
 
 describe('expression reducer', () => {
   it('returns the initial state', () => {
@@ -10,26 +10,22 @@ describe('expression reducer', () => {
   });
 
   it('handles setExpressionTree action', () => {
-    expect(reducer(initialState.expression, {
-      type: SET_EXPRESSION_TREE,
-      tree: 'someTree',
-    })).toEqual({
-      ...initialState.expression,
-      expressionTree: 'someTree',
-      selectedExpressionNode: {},
-    });
+    expect(reducer(initialState.expression, setExpressionTree('someTree')))
+      .toEqual({
+        ...initialState.expression,
+        expressionTree: 'someTree',
+        selectedExpressionNode: {},
+      });
   });
 
-  it('handles setSelectedExpressionPath action', () => {
-    expect(reducer(initialState.expression, {
-      type: SET_SELECTED_EXPRESSION,
-      path: 'somePath',
-      node: { name: 'someObject' },
-    })).toEqual({
-      ...initialState.expression,
-      selectedExpressionPath: 'somePath',
-      selectedExpressionNode: { name: 'someObject' },
-    });
+  it('handles setSelectedExpression action', () => {
+    expect(reducer(initialState.expression,
+      setSelectedExpression('somePath', { name: 'someObject' })))
+      .toEqual({
+        ...initialState.expression,
+        selectedExpressionPath: 'somePath',
+        selectedExpressionNode: { name: 'someObject' },
+      });
   });
 
   it('handles commutate action', () => {
@@ -42,14 +38,12 @@ describe('expression reducer', () => {
       selectedExpressionNode: initialNode,
       selectedExpressionPath: 'Root',
     };
-    expect(reducer(testState, {
-      type: PERFORM_ACTION,
-      actionName: 'commutate',
-    })).toEqual({
-      ...testState,
-      expressionTree: expectedNode,
-      selectedExpressionNode: expectedNode,
-    });
+    expect(reducer(testState, performAction('commutate')))
+      .toEqual({
+        ...testState,
+        expressionTree: expectedNode,
+        selectedExpressionNode: expectedNode,
+      });
   });
 
   it('handles commutate action', () => {
@@ -62,13 +56,11 @@ describe('expression reducer', () => {
       selectedExpressionNode: initialNode,
       selectedExpressionPath: 'Root',
     };
-    expect(reducer(testState, {
-      type: PERFORM_ACTION,
-      actionName: 'evaluate',
-    })).toEqual({
-      ...testState,
-      expressionTree: expectedNode,
-      selectedExpressionNode: expectedNode,
-    });
+    expect(reducer(testState, performAction('evaluate')))
+      .toEqual({
+        ...testState,
+        expressionTree: expectedNode,
+        selectedExpressionNode: expectedNode,
+      });
   });
 });
