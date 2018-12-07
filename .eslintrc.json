@@ -38,6 +38,6 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     },
     "settings": {
-        "import/core-modules": [ "prop-types", "expect" ]
+        "import/core-modules": [ "prop-types", "expect", "react-dom" ]
     }
 }
