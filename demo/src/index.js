@@ -39,6 +39,8 @@ class Demo extends Component {
     return errorMessage && (
       <div className="errorContainer">
         <div>{`There is an error in the given expression: "${errorMessage}".`}</div>
+        <div>The expression parsing errors are not being catched by the component.</div>
+        <div>The host application should take care of the correctness of the expression.</div>
         <div>Showing the latest correct expression:</div>
       </div>
     );
