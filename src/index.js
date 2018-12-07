@@ -3,27 +3,26 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import MainComponent from './MainComponent';
-import './index.less';
 
 const store = configureStore();
 
-const Index = ({ formula, onFormulaChange }) => (
+const Index = ({ expression, onExpressionChange }) => (
   <Provider store={store}>
     <MainComponent
-      formula={formula}
-      onFormulaChange={onFormulaChange}
+      expression={expression}
+      onExpressionChange={onExpressionChange}
     />
   </Provider>
 );
 
 Index.propTypes = {
-  formula: PropTypes.string,
-  onFormulaChange: PropTypes.func,
+  expression: PropTypes.string,
+  onExpressionChange: PropTypes.func,
 };
 
 Index.defaultProps = {
-  formula: '',
-  onFormulaChange: () => {},
+  expression: '',
+  onExpressionChange: () => {},
 };
 
 export default Index;

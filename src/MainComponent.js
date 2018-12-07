@@ -12,16 +12,16 @@ export class MainComponent extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { formula, onFormulaChange, expressionTree } = this.props;
-    if (formula !== prevProps.formula) {
+    const { expression, onExpressionChange, expressionTree } = this.props;
+    if (expression !== prevProps.expression) {
       this.initialize();
     }
-    onFormulaChange(expressionTree.toString());
+    onExpressionChange(expressionTree.toString());
   }
 
   initialize() {
-    const { formula, setExpressionTreeOnState } = this.props;
-    const expressionTree = math.parse(formula);
+    const { expression, setExpressionTreeOnState } = this.props;
+    const expressionTree = math.parse(expression);
     setExpressionTreeOnState(expressionTree);
   }
 
@@ -29,7 +29,7 @@ export class MainComponent extends Component {
     const { expressionTree } = this.props;
     return (
       <div className="mainContainer">
-        <div className="formulaContainer">
+        <div className="expressionContainer">
           {
             <Expression
               treeRoot={expressionTree}
@@ -52,15 +52,15 @@ const mapDispatchToProps = dispatch => ({
 });
 
 MainComponent.propTypes = {
-  formula: PropTypes.string,
-  onFormulaChange: PropTypes.func,
+  expression: PropTypes.string,
+  onExpressionChange: PropTypes.func,
   setExpressionTreeOnState: PropTypes.func.isRequired,
   expressionTree: PropTypes.shape({}),
 };
 
 MainComponent.defaultProps = {
-  formula: '',
-  onFormulaChange: () => {},
+  expression: '',
+  onExpressionChange: () => {},
   expressionTree: {},
 };
 
