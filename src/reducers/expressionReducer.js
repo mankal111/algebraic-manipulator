@@ -11,9 +11,9 @@ const getTrimmedPath = path => path.replace(/Root?./, '');
 
 const performActionOnTree = (state, actionName) => {
   const newTree = state.expressionTree.cloneDeep();
-  let newNode;
   const selectedPath = getTrimmedPath(state.selectedExpressionPath);
   const selectedNode = state.selectedExpressionNode;
+  let newNode = selectedNode;
   switch (actionName) {
   case 'commutate':
     newNode = new math.expression.node.OperatorNode(

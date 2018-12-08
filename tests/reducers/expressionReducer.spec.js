@@ -46,7 +46,7 @@ describe('expression reducer', () => {
       });
   });
 
-  it('handles commutate action', () => {
+  it('handles evaluate action', () => {
     const initialNode = math.parse('1+2');
     const expectedNode = math.parse('3');
     delete expectedNode.comment;
@@ -62,5 +62,17 @@ describe('expression reducer', () => {
         expressionTree: expectedNode,
         selectedExpressionNode: expectedNode,
       });
+  });
+
+  it('handles unknown action', () => {
+    const initialNode = math.parse('1+2');
+    const testState = {
+      ...initialState.expression,
+      expressionTree: initialNode,
+      selectedExpressionNode: initialNode,
+      selectedExpressionPath: 'Root',
+    };
+    expect(reducer(testState, performAction('dance')))
+      .toEqual(testState);
   });
 });
