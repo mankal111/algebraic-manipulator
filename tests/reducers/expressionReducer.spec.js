@@ -65,12 +65,14 @@ describe('expression reducer', () => {
   });
 
   it('handles unknown action', () => {
-    const initialNode = math.parse('1+2');
+    const initialTree = math.parse('(1+2)+3');
+    const selectedNode = initialTree.args[0];
+    delete initialTree.comment;
     const testState = {
       ...initialState.expression,
-      expressionTree: initialNode,
-      selectedExpressionNode: initialNode,
-      selectedExpressionPath: 'Root',
+      expressionTree: initialTree,
+      selectedExpressionNode: selectedNode,
+      selectedExpressionPath: 'Root.args.0',
     };
     expect(reducer(testState, performAction('dance')))
       .toEqual(testState);
