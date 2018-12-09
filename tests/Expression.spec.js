@@ -35,6 +35,11 @@ describe('Expression', () => {
     expect(expressionComponent().hasClass('parenthesisExpression')).toBeTruthy();
   });
 
+  it('removes parenthesis if the content is a constant node', () => {
+    setExpressionInProps('(1)');
+    expect(expressionComponent().hasClass('parenthesisExpression')).toBeFalsy();
+  });
+
   it('renders a constant component if the given node is a constant node', () => {
     setExpressionInProps('1');
     expect(expressionComponent().hasClass('constantExpression')).toBeTruthy();
