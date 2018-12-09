@@ -49,13 +49,12 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 OperatorExpression.propTypes = {
   node: PropTypes.shape({}),
   path: PropTypes.string.isRequired,
-  selectExpression: PropTypes.func,
+  selectExpression: PropTypes.func.isRequired,
   selectedExpressionPath: PropTypes.string,
 };
 
 OperatorExpression.defaultProps = {
   node: {},
-  selectExpression: () => {},
   selectedExpressionPath: '',
 };
 
