@@ -1,7 +1,11 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow } from 'enzyme';
-import { OperatorExpression, mapDispatchToProps } from '../src/OperatorExpression';
+import {
+  OperatorExpression,
+  mapDispatchToProps,
+  mapStateToProps,
+} from '../src/OperatorExpression';
 
 describe('OperatorExpression', () => {
   let props;
@@ -19,7 +23,6 @@ describe('OperatorExpression', () => {
     props = {
       node: { op: '+', args: [{}, {}], fn: 'add' },
       path: 'some path',
-      selectedExpressionPath: 'some other path',
       selectExpression: () => {},
     };
     wrapper = undefined;
@@ -35,7 +38,10 @@ describe('OperatorExpression', () => {
   });
 
   it('if it has the same path with the selected one, it has the class \'focus\'', () => {
-    props.selectedExpressionPath = props.path;
+    props = {
+      ...props,
+      ...mapStateToProps({ expression: { selectedExpressionPath: props.path } }),
+    }
     expect(operatorExpression().hasClass('focus')).toBeTruthy();
   });
 
