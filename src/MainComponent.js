@@ -17,7 +17,7 @@ export class MainComponent extends Component {
     if (expression !== prevProps.expression) {
       this.initialize();
     }
-    onExpressionChange(expressionTree.toString());
+    onExpressionChange(expressionTree.toString({ parenthesis: 'auto' }));
   }
 
   initialize() {
