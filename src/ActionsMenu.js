@@ -3,6 +3,7 @@ import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import './OperatorExpression.less';
+import ActionButton from './ActionButton';
 import { performAction } from './actions/expressionActions';
 
 export const actionsPerOperator = {
@@ -20,15 +21,10 @@ export const ActionsMenu = (props) => {
   return operatorFn && (
     <div className="actionsMenuContainer">
       {actionsList.map(action => (
-        <span
-          key={action}
-          onClick={() => actionClick(action)}
-          onKeyPress={() => actionClick(action)}
-          role="button"
-          tabIndex="0"
-        >
-          {action}
-        </span>
+        <ActionButton
+          action={action}
+          onClick={actionClick}
+        />
       ))}
     </div>
   );
