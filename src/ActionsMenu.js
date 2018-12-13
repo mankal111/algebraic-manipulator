@@ -4,7 +4,6 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import './OperatorExpression.less';
 import ActionButton from './ActionButton';
-import { performAction } from './actions/expressionActions';
 
 export const actionsPerOperator = {
   add: [],
@@ -24,6 +23,7 @@ export const ActionsMenu = (props) => {
         <ActionButton
           action={action}
           onClick={actionClick}
+          key={action}
         />
       ))}
     </div>
@@ -32,10 +32,6 @@ export const ActionsMenu = (props) => {
 
 export const mapStateToProps = state => ({
   operatorFn: _.get(state, 'expression.selectedExpressionNode.fn'),
-});
-
-export const mapDispatchToProps = dispatch => ({
-  actionClick: actionName => dispatch(performAction(actionName)),
 });
 
 ActionsMenu.propTypes = {
@@ -48,5 +44,4 @@ ActionsMenu.defaultProps = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(ActionsMenu);

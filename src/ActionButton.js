@@ -1,14 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { performAction } from './actions/expressionActions';
 
-const ActionButton = (props) => {
+export const ActionButton = (props) => {
   const { action, onClick } = props;
   const onClickHandler = () => {
     onClick(action);
   };
   return (
     <span
-      key={action}
       onClick={onClickHandler}
       onKeyPress={onClickHandler}
       role="button"
@@ -19,9 +20,15 @@ const ActionButton = (props) => {
   );
 };
 
+export const mapDispatchToProps = dispatch => ({
+  actionClick: actionName => dispatch(performAction(actionName)),
+});
+
 ActionButton.propTypes = {
   action: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default ActionButton;
+export default connect(
+  mapDispatchToProps,
+)(ActionButton);
