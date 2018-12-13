@@ -54,14 +54,13 @@ const mapDispatchToProps = dispatch => ({
 
 MainComponent.propTypes = {
   expression: PropTypes.string,
-  onExpressionChange: PropTypes.func,
+  onExpressionChange: PropTypes.func.isRequired,
   setExpressionTreeOnState: PropTypes.func.isRequired,
   expressionTree: PropTypes.shape({}),
 };
 
 MainComponent.defaultProps = {
   expression: '',
-  onExpressionChange: () => {},
   expressionTree: {},
 };
 
