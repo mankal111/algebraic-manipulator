@@ -22,7 +22,7 @@ export const ActionButton = (props) => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  actionClick: actionName => dispatch(performAction(actionName)),
+  onClick: actionName => dispatch(performAction(actionName)),
 });
 
 ActionButton.propTypes = {
@@ -31,5 +31,6 @@ ActionButton.propTypes = {
 };
 
 export default connect(
+  null,
   mapDispatchToProps,
 )(ActionButton);
