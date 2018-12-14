@@ -30,7 +30,7 @@ describe('ActionButton', () => {
 
   it('calls onClick when the component is clicked', () => {
     const dispatch = expect.createSpy();
-    props.onClick = mapDispatchToProps(dispatch, props).actionClick;
+    props.onClick = mapDispatchToProps(dispatch, props).onClick;
     actionButton().simulate('click');
     expect(dispatch).toHaveBeenCalledWith(performAction(props.action));
   });
