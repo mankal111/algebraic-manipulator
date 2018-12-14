@@ -12,7 +12,7 @@ export const actionsPerOperator = {
 };
 
 export const ActionsMenu = (props) => {
-  const { operatorFn, actionClick } = props;
+  const { operatorFn } = props;
   const actionsList = [
     ...actionsPerOperator.default,
     ...actionsPerOperator[operatorFn],
@@ -22,7 +22,6 @@ export const ActionsMenu = (props) => {
       {actionsList.map(action => (
         <ActionButton
           action={action}
-          onClick={actionClick}
           key={action}
         />
       ))}
