@@ -10,6 +10,7 @@ export const ActionButton = (props) => {
   };
   return (
     <span
+      className="actionButton"
       onClick={onClickHandler}
       onKeyPress={onClickHandler}
       role="button"
