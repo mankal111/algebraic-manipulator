@@ -8,7 +8,7 @@ import ActionButton from './ActionButton';
 export const actionsPerOperator = {
   add: ['commutate'],
   multiply: ['commutate'],
-  pow: [],
+  pow: ['expand'],
   default: ['evaluate'],
 };
 
