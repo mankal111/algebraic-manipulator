@@ -1,5 +1,6 @@
 import React from 'react';
 import OperatorExpression from './OperatorExpression';
+import ConstantExpression from './ConstantExpression';
 
 export const Expression = ({ treeRoot: node, path }) => {
   switch (node.type) {
@@ -26,7 +27,12 @@ export const Expression = ({ treeRoot: node, path }) => {
         </span>
       );
   case 'ConstantNode':
-    return <span className="constantExpression">{node.value}</span>;
+    return (
+      <ConstantExpression
+        node={node}
+        path={path}
+      />
+    );
   case 'SymbolNode':
     return <span className="symbolExpression">{node.name}</span>;
   default:
