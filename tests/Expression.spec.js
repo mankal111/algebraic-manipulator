@@ -42,7 +42,7 @@ describe('Expression', () => {
 
   it('renders a constant component if the given node is a constant node', () => {
     setExpressionInProps('1');
-    expect(expressionComponent().hasClass('constantExpression')).toBeTruthy();
+    expect(expressionComponent().name()).toMatch('ConstantExpression');
   });
 
   it('renders a symbol component if the given node is a symbol node', () => {
