@@ -16,11 +16,26 @@ const performActionOnTree = (state, actionName) => {
   let newNode = selectedNode;
   switch (actionName) {
   case 'commutate':
-    newNode = new math.expression.node.OperatorNode(
-      selectedNode.op,
-      selectedNode.fn,
-      [selectedNode.args[1], selectedNode.args[0]],
-    );
+    // mathjs creates a subtraction operation,
+    // which causes problem in operation commutation (1-2=2-1)
+    // so if the operation is subtraction, we turn it to addition
+    // and negate the second operant before the commutation
+    if (selectedNode.fn === 'subtract') {
+      if (selectedNode.args[1].type === 'ConstantNode') {
+        selectedNode.args[1] = new math.expression.node.ConstantNode(-selectedNode.args[1].value);
+      }
+      newNode = new math.expression.node.OperatorNode(
+        '+',
+        'add',
+        [selectedNode.args[1], selectedNode.args[0]],
+      );
+    } else {
+      newNode = new math.expression.node.OperatorNode(
+        selectedNode.op,
+        selectedNode.fn,
+        [selectedNode.args[1], selectedNode.args[0]],
+      );
+    }
     break;
   case 'evaluate':
     newNode = new math.expression.node.ConstantNode(selectedNode.eval());
