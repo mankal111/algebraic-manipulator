@@ -6,10 +6,10 @@ import './OperatorExpression.less';
 import ActionButton from './ActionButton';
 
 export const actionsPerOperator = {
-  add: ['commutate'],
-  subtract: ['commutate'],
-  multiply: ['commutate'],
-  default: ['evaluate'],
+  add: [],
+  subtract: [],
+  multiply: [],
+  default: ['evaluate', 'commutate'],
 };
 
 export const ActionsMenu = (props) => {
