@@ -22,7 +22,7 @@ export const performActionOnTree = (state, actionName) => {
   const selectedNode = state.selectedExpressionNode;
   let newNode = selectedNode.cloneDeep();
   switch (actionName) {
-  case 'commutate':
+  case 'Commutate':
     // mathjs creates a subtraction operation,
     // which causes problem in operation commutation (1-2=2-1)
     // so if the operation is subtraction, we turn it to addition
@@ -36,7 +36,7 @@ export const performActionOnTree = (state, actionName) => {
       [newNode.args[1], newNode.args[0]],
     );
     break;
-  case 'evaluate':
+  case 'Evaluate':
     newNode = new math.expression.node.ConstantNode(selectedNode.eval());
     break;
   default:

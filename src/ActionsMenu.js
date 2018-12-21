@@ -9,16 +9,27 @@ export const actionsPerOperator = {
   add: [],
   subtract: [],
   multiply: [],
-  default: ['evaluate', 'commutate'],
+  default: ['Evaluate', 'Commutate'],
 };
 
+export const actionsForConstant = [
+  'Split To Sum',
+  'Split To Product',
+];
+
 export const ActionsMenu = (props) => {
-  const { operatorFn } = props;
-  const actionsList = [
-    ...actionsPerOperator.default,
-    ...actionsPerOperator[operatorFn],
-  ];
-  return operatorFn && (
+  const { selectedNode: { type, fn } } = props;
+  let actionsList;
+  if (type === 'OperatorNode') {
+    actionsList = [
+      ...actionsPerOperator.default,
+      ...actionsPerOperator[fn],
+    ];
+  } else if (type === 'ConstantNode') {
+    actionsList = actionsForConstant;
+  }
+
+  return actionsList ? (
     <div className="actionsMenuContainer">
       {actionsList.map(action => (
         <ActionButton
@@ -27,20 +38,19 @@ export const ActionsMenu = (props) => {
         />
       ))}
     </div>
-  );
+  ) : null;
 };
 
 export const mapStateToProps = state => ({
-  operatorFn: _.get(state, 'expression.selectedExpressionNode.fn'),
-  value: _.get(state, 'expression.selectedExpressionNode.value'),
+  selectedNode: state.expression.selectedExpressionNode,
 });
 
 ActionsMenu.propTypes = {
-  operatorFn: PropTypes.string,
+  selectedNode: PropTypes.shape(),
 };
 
 ActionsMenu.defaultProps = {
-  operatorFn: '',
+  selectedNode: {},
 };
 
 export default connect(
