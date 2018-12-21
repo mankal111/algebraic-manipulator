@@ -9,7 +9,6 @@ export const actionsPerOperator = {
   add: ['commutate'],
   subtract: ['commutate'],
   multiply: ['commutate'],
-  pow: ['expand'],
   default: ['evaluate'],
 };
 
@@ -33,6 +32,7 @@ export const ActionsMenu = (props) => {
 
 export const mapStateToProps = state => ({
   operatorFn: _.get(state, 'expression.selectedExpressionNode.fn'),
+  value: _.get(state, 'expression.selectedExpressionNode.value'),
 });
 
 ActionsMenu.propTypes = {
