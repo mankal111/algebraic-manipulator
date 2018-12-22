@@ -39,6 +39,16 @@ export const performActionOnTree = (state, actionName) => {
   case 'Evaluate':
     newNode = new math.expression.node.ConstantNode(selectedNode.eval());
     break;
+  case 'Split To Sum':
+    newNode = new math.expression.node.OperatorNode(
+      '+',
+      'Add',
+      [
+        new math.expression.node.ConstantNode(selectedNode.value - 1),
+        new math.expression.node.ConstantNode(1),
+      ],
+    );
+    break;
   default:
     break;
   }
