@@ -42,7 +42,7 @@ export const performActionOnTree = (state, actionName) => {
   case 'Split To Sum':
     newNode = new math.expression.node.OperatorNode(
       '+',
-      'Add',
+      'add',
       [
         new math.expression.node.ConstantNode(selectedNode.value - 1),
         new math.expression.node.ConstantNode(1),
