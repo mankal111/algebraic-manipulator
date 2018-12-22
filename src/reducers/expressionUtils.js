@@ -40,23 +40,27 @@ export const performActionOnTree = (state, actionName) => {
     newNode = new math.expression.node.ConstantNode(selectedNode.eval());
     break;
   case 'Split To Sum':
-    newNode = new math.expression.node.OperatorNode(
-      '+',
-      'add',
-      [
-        new math.expression.node.ConstantNode(selectedNode.value - 1),
-        new math.expression.node.ConstantNode(1),
-      ],
+    newNode = new math.expression.node.ParenthesisNode(
+      new math.expression.node.OperatorNode(
+        '+',
+        'add',
+        [
+          new math.expression.node.ConstantNode(selectedNode.value - 1),
+          new math.expression.node.ConstantNode(1),
+        ],
+      ),
     );
     break;
   case 'Split To Product':
-    newNode = new math.expression.node.OperatorNode(
-      '*',
-      'multiply',
-      [
-        new math.expression.node.ConstantNode(1),
-        new math.expression.node.ConstantNode(selectedNode.value),
-      ],
+    newNode = new math.expression.node.ParenthesisNode(
+      new math.expression.node.OperatorNode(
+        '*',
+        'multiply',
+        [
+          new math.expression.node.ConstantNode(1),
+          new math.expression.node.ConstantNode(selectedNode.value),
+        ],
+      ),
     );
     break;
   default:
