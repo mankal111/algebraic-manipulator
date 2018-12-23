@@ -4,39 +4,50 @@ import PropTypes from 'prop-types';
 import { performAction } from './actions/expressionActions';
 
 export class ActionButton extends Component {
-  constructor() {
-    super();
-    this.onClickHandler = this.onClickHandler.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      submenuVisible: false,
+    };
+    this.mainActionClickHandler = this.mainActionClickHandler.bind(this);
   }
 
-  onClickHandler() {
-    const { onClick, action } = this.props;
-    onClick(action);
+  mainActionClickHandler() {
+    const { triggerAction, action } = this.props;
+    if (['Split To Sum', 'Split To Product'].includes(action)) {
+      this.setState({ submenuVisible: true });
+    } else {
+      triggerAction(action);
+    }
   }
 
   render() {
     const { action } = this.props;
+    const { submenuVisible } = this.state;
     return (
-      <span
-        className="actionButton"
-        onClick={this.onClickHandler}
-        onKeyPress={this.onClickHandler}
-        role="button"
-        tabIndex="0"
-      >
-        {action}
+      <span className="actionButtonContainer">
+        <span
+          className="actionButton"
+          onClick={this.mainActionClickHandler}
+          onKeyPress={this.mainActionClickHandler}
+          role="button"
+          tabIndex="0"
+        >
+          {action}
+        </span>
+        { submenuVisible && <span>submenu</span> }
       </span>
     );
   }
 }
 
 export const mapDispatchToProps = dispatch => ({
-  onClick: actionName => dispatch(performAction(actionName)),
+  triggerAction: actionName => dispatch(performAction(actionName)),
 });
 
 ActionButton.propTypes = {
   action: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  triggerAction: PropTypes.func.isRequired,
 };
 
 export default connect(
