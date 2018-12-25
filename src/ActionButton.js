@@ -17,7 +17,7 @@ export class ActionButton extends Component {
   }
 
   onInputChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: parseInt(event.target.value) });
   }
 
   mainActionClickHandler() {
@@ -54,11 +54,13 @@ export class ActionButton extends Component {
           <div>
             <input
               name="submenuInput1"
+              type="number"
               onChange={this.onInputChange}
               value={submenuInput1}
             />
             <input
               name="submenuInput2"
+              type="number"
               onChange={this.onInputChange}
               value={submenuInput2}
             />
