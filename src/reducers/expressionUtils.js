@@ -16,7 +16,7 @@ export const convertSubToAdd = (node) => {
   return convertedNode;
 };
 
-export const performActionOnTree = (state, actionName) => {
+export const performActionOnTree = (state, actionName, args) => {
   const newTree = state.expressionTree.cloneDeep();
   const selectedPath = getTrimmedPath(state.selectedExpressionPath);
   const selectedNode = state.selectedExpressionNode;
@@ -45,8 +45,8 @@ export const performActionOnTree = (state, actionName) => {
         '+',
         'add',
         [
-          new math.expression.node.ConstantNode(selectedNode.value - 1),
-          new math.expression.node.ConstantNode(1),
+          new math.expression.node.ConstantNode(args[0]),
+          new math.expression.node.ConstantNode(args[1]),
         ],
       ),
     );
@@ -57,8 +57,8 @@ export const performActionOnTree = (state, actionName) => {
         '*',
         'multiply',
         [
-          new math.expression.node.ConstantNode(1),
-          new math.expression.node.ConstantNode(selectedNode.value),
+          new math.expression.node.ConstantNode(args[0]),
+          new math.expression.node.ConstantNode(args[1]),
         ],
       ),
     );
