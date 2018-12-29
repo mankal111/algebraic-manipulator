@@ -55,16 +55,18 @@ export const performActionOnTree = (state, actionName, args) => {
     }
     break;
   case 'Split To Product':
-    newNode = new math.expression.node.ParenthesisNode(
-      new math.expression.node.OperatorNode(
-        '*',
-        'multiply',
-        [
-          new math.expression.node.ConstantNode(parsedArgs[0]),
-          new math.expression.node.ConstantNode(parsedArgs[1]),
-        ],
-      ),
-    );
+    if (parsedArgs[0] * parsedArgs[1] === selectedNode.value) {
+      newNode = new math.expression.node.ParenthesisNode(
+        new math.expression.node.OperatorNode(
+          '*',
+          'multiply',
+          [
+            new math.expression.node.ConstantNode(parsedArgs[0]),
+            new math.expression.node.ConstantNode(parsedArgs[1]),
+          ],
+        ),
+      );
+    }
     break;
   default:
     break;
