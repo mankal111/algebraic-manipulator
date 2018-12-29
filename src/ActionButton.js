@@ -33,7 +33,8 @@ export class ActionButton extends Component {
   submenuClickHandler() {
     const { triggerAction, action } = this.props;
     const { submenuInput1, submenuInput2 } = this.state;
-    triggerAction(action, submenuInput1, submenuInput2);
+    const inputs = submenuInput1 && submenuInput2 && [submenuInput1, submenuInput2];
+    triggerAction(action, inputs);
   }
 
   render() {
@@ -78,7 +79,7 @@ export class ActionButton extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  triggerAction: (actionName, arg1, arg2) => dispatch(performAction(actionName, [arg1, arg2])),
+  triggerAction: (actionName, args) => dispatch(performAction(actionName, args)),
 });
 
 ActionButton.propTypes = {

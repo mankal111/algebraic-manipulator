@@ -16,7 +16,7 @@ export const convertSubToAdd = (node) => {
   return convertedNode;
 };
 
-export const performActionOnTree = (state, actionName, args) => {
+export const performActionOnTree = (state, actionName, args = []) => {
   const newTree = state.expressionTree.cloneDeep();
   const selectedPath = getTrimmedPath(state.selectedExpressionPath);
   const selectedNode = state.selectedExpressionNode;
