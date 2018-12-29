@@ -8,11 +8,10 @@ export const setSelectedExpression = (path, node) => (
   { type: types.SET_SELECTED_EXPRESSION, path, node }
 );
 
-export const performAction = (actionName, arg1, arg2) => (
+export const performAction = (actionName, args) => (
   {
     type: types.PERFORM_ACTION,
     actionName,
-    arg1,
-    arg2,
+    args,
   }
 );

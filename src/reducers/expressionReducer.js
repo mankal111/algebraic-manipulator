@@ -17,7 +17,7 @@ export default (state = initialState.expression, action) => {
       selectedExpressionNode: action.node,
     };
   case PERFORM_ACTION:
-    return { ...state, ...performActionOnTree(state, action.actionName, [action.arg1, action.arg2]) };
+    return { ...state, ...performActionOnTree(state, action.actionName, action.args) };
   default:
     return state;
   }

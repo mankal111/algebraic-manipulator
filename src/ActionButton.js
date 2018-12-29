@@ -80,7 +80,7 @@ export class ActionButton extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  triggerAction: (actionName, arg1, arg2) => dispatch(performAction(actionName, arg1, arg2)),
+  triggerAction: (actionName, arg1, arg2) => dispatch(performAction(actionName, [arg1, arg2])),
 });
 
 ActionButton.propTypes = {
