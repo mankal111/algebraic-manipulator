@@ -64,7 +64,14 @@ export class ActionButton extends Component {
               onChange={this.onInputChange}
               value={submenuInput2}
             />
-            <span onClick={this.submenuClickHandler}>OK</span>
+            <span
+              onClick={this.submenuClickHandler}
+              onKeyPress={this.submenuClickHanlder}
+              role="button"
+              tabIndex="0"
+            >
+              OK
+            </span>
           </div>
         )}
       </span>
