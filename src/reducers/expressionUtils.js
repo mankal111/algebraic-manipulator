@@ -20,6 +20,7 @@ export const performActionOnTree = (state, actionName, args) => {
   const newTree = state.expressionTree.cloneDeep();
   const selectedPath = getTrimmedPath(state.selectedExpressionPath);
   const selectedNode = state.selectedExpressionNode;
+  const parsedArgs = args.map(arg => math.parse(arg).eval());
   let newNode = selectedNode.cloneDeep();
   switch (actionName) {
   case 'Commutate':
@@ -40,14 +41,14 @@ export const performActionOnTree = (state, actionName, args) => {
     newNode = new math.expression.node.ConstantNode(selectedNode.eval());
     break;
   case 'Split To Sum':
-    if (args[0] + args[1] === selectedNode.value) {
+    if (parsedArgs[0] + parsedArgs[1] === selectedNode.value) {
       newNode = new math.expression.node.ParenthesisNode(
         new math.expression.node.OperatorNode(
           '+',
           'add',
           [
-            new math.expression.node.ConstantNode(args[0]),
-            new math.expression.node.ConstantNode(args[1]),
+            new math.expression.node.ConstantNode(parsedArgs[0]),
+            new math.expression.node.ConstantNode(parsedArgs[1]),
           ],
         ),
       );
@@ -59,8 +60,8 @@ export const performActionOnTree = (state, actionName, args) => {
         '*',
         'multiply',
         [
-          new math.expression.node.ConstantNode(args[0]),
-          new math.expression.node.ConstantNode(args[1]),
+          new math.expression.node.ConstantNode(parsedArgs[0]),
+          new math.expression.node.ConstantNode(parsedArgs[1]),
         ],
       ),
     );
