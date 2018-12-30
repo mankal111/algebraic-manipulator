@@ -40,6 +40,29 @@ export const performActionOnTree = (state, actionName, args = []) => {
   case 'Evaluate':
     newNode = new math.expression.node.ConstantNode(selectedNode.eval());
     break;
+  case 'Associative':
+    if (selectedNode.fn === 'add' || selectedNode.fn === 'multiply') {
+      if (selectedNode.args[0].type === 'ParenthesisNode' && selectedNode.args[0].content.fn === selectedNode.fn) {
+        newNode = new math.expression.node.OperatorNode(
+          selectedNode.op,
+          selectedNode.fn,
+          [
+            selectedNode.args[0].content.args[0],
+            new math.expression.node.ParenthesisNode(
+              new math.expression.node.OperatorNode(
+                selectedNode.op,
+                selectedNode.fn,
+                [
+                  selectedNode.args[0].content.args[1],
+                  selectedNode.args[1],
+                ],
+              ),
+            ),
+          ],
+        );
+      }
+    }
+    break;
   case 'Split To Sum':
     if (parsedArgs[0] + parsedArgs[1] === selectedNode.value) {
       newNode = new math.expression.node.ParenthesisNode(

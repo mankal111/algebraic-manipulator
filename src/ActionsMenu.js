@@ -9,7 +9,7 @@ export const actionsPerOperator = {
   add: [],
   subtract: [],
   multiply: [],
-  default: ['Evaluate', 'Commutate'],
+  default: ['Evaluate', 'Commutate', 'Associative'],
 };
 
 export const actionsForConstant = [
