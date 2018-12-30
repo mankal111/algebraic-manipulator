@@ -60,6 +60,24 @@ export const performActionOnTree = (state, actionName, args = []) => {
             ),
           ],
         );
+      } else if (selectedNode.args[1].type === 'ParenthesisNode' && selectedNode.args[1].content.fn === selectedNode.fn) {
+        newNode = new math.expression.node.OperatorNode(
+          selectedNode.op,
+          selectedNode.fn,
+          [
+            new math.expression.node.ParenthesisNode(
+              new math.expression.node.OperatorNode(
+                selectedNode.op,
+                selectedNode.fn,
+                [
+                  selectedNode.args[0],
+                  selectedNode.args[1].content.args[0],
+                ],
+              ),
+            ),
+            selectedNode.args[1].content.args[1],
+          ],
+        );
       }
     }
     break;
