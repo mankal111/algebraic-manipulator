@@ -17,7 +17,19 @@ export class ActionButton extends Component {
   }
 
   onInputChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    const { action, selectedExpressionNode } = this.props;
+    const { name, value } = event.target;
+    const otherName = name === 'submenuInput1' ? 'submenuInput2' : 'submenuInput1';
+    let otherValue;
+    if (action === 'Split To Sum') {
+      otherValue = selectedExpressionNode - value;
+    } else if (action === 'Split To Product') {
+      otherValue = selectedExpressionNode / value;
+    }
+    this.setState({ [name]: value });
+    if (otherValue) {
+      this.setState({ [otherName]: otherValue });
+    }
   }
 
   mainActionClickHandler() {
@@ -78,6 +90,10 @@ export class ActionButton extends Component {
   }
 }
 
+export const mapStateToProps = state => ({
+  selectedExpressionNode: state.expression.selectedExpressionNode,
+});
+
 export const mapDispatchToProps = dispatch => ({
   triggerAction: (actionName, args) => dispatch(performAction(actionName, args)),
 });
@@ -85,9 +101,10 @@ export const mapDispatchToProps = dispatch => ({
 ActionButton.propTypes = {
   action: PropTypes.string.isRequired,
   triggerAction: PropTypes.func.isRequired,
+  selectedExpressionNode: PropTypes.shape({}).isRequired,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ActionButton);
