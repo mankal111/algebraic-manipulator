@@ -20,14 +20,14 @@ export class ActionButton extends Component {
     const { action, selectedExpressionNode } = this.props;
     const { name, value } = event.target;
     const otherName = name === 'submenuInput1' ? 'submenuInput2' : 'submenuInput1';
-    let otherValue;
+    let otherValue = null;
     if (action === 'Split To Sum') {
       otherValue = selectedExpressionNode - value;
     } else if (action === 'Split To Product') {
       otherValue = selectedExpressionNode / value;
     }
     this.setState({ [name]: value });
-    if (otherValue) {
+    if (otherValue !== null) {
       this.setState({ [otherName]: otherValue });
     }
   }
