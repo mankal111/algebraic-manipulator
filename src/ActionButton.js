@@ -21,9 +21,9 @@ export class ActionButton extends Component {
     const { name, value } = event.target;
     const otherName = name === 'submenuInput1' ? 'submenuInput2' : 'submenuInput1';
     let otherValue = null;
-    if (action === 'Split To Sum') {
+    if (action.id === 'SplitToSum') {
       otherValue = selectedExpressionNode - value;
-    } else if (action === 'Split To Product') {
+    } else if (action.id === 'SplitToProduct') {
       otherValue = selectedExpressionNode / value;
     }
     this.setState({ [name]: value });
@@ -35,10 +35,10 @@ export class ActionButton extends Component {
   mainActionClickHandler() {
     const { triggerAction, action } = this.props;
     const { submenuVisible } = this.state;
-    if (['Split To Sum', 'Split To Product'].includes(action)) {
+    if (['SplitToSum', 'SplitToProduct'].includes(action.id)) {
       this.setState({ submenuVisible: !submenuVisible });
     } else {
-      triggerAction(action);
+      triggerAction(action.title);
     }
   }
 
@@ -46,7 +46,7 @@ export class ActionButton extends Component {
     const { triggerAction, action } = this.props;
     const { submenuInput1, submenuInput2 } = this.state;
     const inputs = submenuInput1 && submenuInput2 && [submenuInput1, submenuInput2];
-    triggerAction(action, inputs);
+    triggerAction(action.title, inputs);
   }
 
   render() {
@@ -61,7 +61,7 @@ export class ActionButton extends Component {
           role="button"
           tabIndex="0"
         >
-          {action}
+          {action.title}
         </span>
         { submenuVisible && (
           <div>
@@ -99,14 +99,14 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 ActionButton.propTypes = {
-  action: PropTypes.string.isRequired,
+  action: PropTypes.shape().isRequired,
   triggerAction: PropTypes.func.isRequired,
   selectedExpressionNode: PropTypes.shape({}),
 };
 
 ActionButton.defaultProps = {
   selectedExpressionNode: {},
-}
+};
 
 export default connect(
   mapStateToProps,

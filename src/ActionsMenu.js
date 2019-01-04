@@ -5,36 +5,27 @@ import PropTypes from 'prop-types';
 import './OperatorExpression.less';
 import ActionButton from './ActionButton';
 
-export const actionsPerOperator = {
-  add: [],
-  subtract: [],
-  multiply: [],
-  default: ['Evaluate', 'Commutate', 'Associative'],
-};
+export const actionsForOperator = [
+  { title: 'Evaluate', id: 'Evaluate' },
+  { title: 'Commutate', id: 'Commutate' },
+  { title: 'Associative', id: 'Associative' },
+];
 
 export const actionsForConstant = [
-  'Split To Sum',
-  'Split To Product',
+  { title: 'Split To Sum', id: 'SplitToSum' },
+  { title: 'Split To Product', id: 'SplitToProduct' },
 ];
 
 export const ActionsMenu = (props) => {
-  const { selectedNode: { type, fn } } = props;
-  let actionsList;
-  if (type === 'OperatorNode') {
-    actionsList = [
-      ...actionsPerOperator.default,
-      ...actionsPerOperator[fn],
-    ];
-  } else if (type === 'ConstantNode') {
-    actionsList = actionsForConstant;
-  }
+  const { selectedNode: { type } } = props;
+  const actionsList = (type === 'OperatorNode') ? actionsForOperator : actionsForConstant;
 
   return actionsList ? (
     <div className="actionsMenuContainer">
       {actionsList.map(action => (
         <ActionButton
           action={action}
-          key={action}
+          key={action.id}
         />
       ))}
     </div>
