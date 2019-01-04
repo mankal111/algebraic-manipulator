@@ -101,8 +101,12 @@ export const mapDispatchToProps = dispatch => ({
 ActionButton.propTypes = {
   action: PropTypes.string.isRequired,
   triggerAction: PropTypes.func.isRequired,
-  selectedExpressionNode: PropTypes.shape({}).isRequired,
+  selectedExpressionNode: PropTypes.shape({}),
 };
+
+ActionButton.defaultProps = {
+  selectedExpressionNode: {},
+}
 
 export default connect(
   mapStateToProps,
