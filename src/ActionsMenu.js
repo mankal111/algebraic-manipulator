@@ -1,20 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import './OperatorExpression.less';
 import ActionButton from './ActionButton';
-
-export const actionsForOperator = [
-  { title: 'Evaluate', id: 'Evaluate' },
-  { title: 'Commutate', id: 'Commutate' },
-  { title: 'Associative', id: 'Associative' },
-];
-
-export const actionsForConstant = [
-  { title: 'Split To Sum', id: 'SplitToSum', inputsRelation: (constant, input) => constant - input },
-  { title: 'Split To Product', id: 'SplitToProduct', inputsRelation: (constant, input) => constant / input },
-];
+import { actionsForOperator, actionsForConstant } from './ListsOfActions';
 
 export const ActionsMenu = (props) => {
   const { selectedNode: { type } } = props;
