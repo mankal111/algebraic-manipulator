@@ -20,12 +20,9 @@ export class ActionButton extends Component {
     const { action, selectedExpressionNode } = this.props;
     const { name, value } = event.target;
     const otherName = name === 'submenuInput1' ? 'submenuInput2' : 'submenuInput1';
-    let otherValue = null;
-    if (action.id === 'SplitToSum') {
-      otherValue = selectedExpressionNode - value;
-    } else if (action.id === 'SplitToProduct') {
-      otherValue = selectedExpressionNode / value;
-    }
+    const otherValue = action.inputsRelation
+      ? action.inputsRelation(selectedExpressionNode, value)
+      : null;
     this.setState({ [name]: value });
     if (otherValue !== null) {
       this.setState({ [otherName]: otherValue });
