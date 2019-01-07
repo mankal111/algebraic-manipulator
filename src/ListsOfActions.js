@@ -5,6 +5,26 @@ export const actionsForOperator = [
 ];
 
 export const actionsForConstant = [
-  { title: 'Split To Sum', id: 'SplitToSum', inputsRelation: (constant, input) => constant - input },
-  { title: 'Split To Product', id: 'SplitToProduct', inputsRelation: (constant, input) => constant / input },
+  {
+    title: 'Split To Sum',
+    id: 'SplitToSum',
+    inputsRelation: (constant, input) => constant - input,
+    submenuStructure: [
+      { type: 'input' },
+      { type: 'text', content: '+' },
+      { type: 'input' },
+      { type: 'button', text: 'split', triggerAction: true },
+    ],
+  },
+  {
+    title: 'Split To Product',
+    id: 'SplitToProduct',
+    inputsRelation: (constant, input) => constant / input,
+    submenuStructure: [
+      { type: 'input' },
+      { type: 'text', content: 'X' },
+      { type: 'input' },
+      { type: 'button', text: 'split', triggerAction: true },
+    ],
+  },
 ];
