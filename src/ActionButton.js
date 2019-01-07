@@ -15,13 +15,6 @@ export class ActionButton extends Component {
     this.onInputChange = this.onInputChange.bind(this);
   }
 
-  componentDidMount() {
-    const { action } = this.props;
-    const inputs = [];
-    action.submenuStructure.forEach(item => (item.type === 'input') && inputs.push(0));
-    this.setState({ submenuInputs: inputs });
-  }
-
   onInputChange(event) {
     const { action, selectedExpressionNode } = this.props;
     const { name, value } = event.target;
@@ -39,10 +32,20 @@ export class ActionButton extends Component {
   }
 
   mainActionClickHandler() {
-    const { triggerAction, action } = this.props;
+    const { triggerAction, action, selectedExpressionNode: { value } } = this.props;
     const { submenuVisible } = this.state;
     if (['SplitToSum', 'SplitToProduct'].includes(action.id)) {
       this.setState({ submenuVisible: !submenuVisible });
+      let inputs = [];
+      if (action.inputsRelation) {
+        inputs = [
+          value,
+          action.inputsRelation(value, value),
+        ];
+      } else {
+        action.submenuStructure.forEach(item => (item.type === 'input') && inputs.push(0));
+      }
+      this.setState({ submenuInputs: inputs });
     } else {
       triggerAction(action.title);
     }
