@@ -8,25 +8,34 @@ export class ActionButton extends Component {
     super(props);
     this.state = {
       submenuVisible: false,
-      submenuInput1: 0,
-      submenuInput2: 0,
+      submenuInputs: [],
     };
     this.mainActionClickHandler = this.mainActionClickHandler.bind(this);
     this.submenuClickHandler = this.submenuClickHandler.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
 
+  componentDidMount() {
+    const { action } = this.props;
+    const inputs = [];
+    action.submenuStructure.forEach(item => (item.type === 'input') && inputs.push(0));
+    this.setState({ submenuInputs: inputs });
+  }
+
   onInputChange(event) {
     const { action, selectedExpressionNode } = this.props;
     const { name, value } = event.target;
-    const otherName = name === 'submenuInput1' ? 'submenuInput2' : 'submenuInput1';
+    const { submenuInputs } = this.state;
+    const otherName = name === 1 ? 2 : 1;
     const otherValue = action.inputsRelation
       ? action.inputsRelation(selectedExpressionNode, value)
       : null;
-    this.setState({ [name]: value });
+    const newInputs = [...submenuInputs];
+    newInputs[name] = Number.parseInt(value, 10);
     if (otherValue !== null) {
-      this.setState({ [otherName]: otherValue });
+      newInputs[otherName] = otherValue;
     }
+    this.setState({ submenuInputs: newInputs });
   }
 
   mainActionClickHandler() {
@@ -41,14 +50,14 @@ export class ActionButton extends Component {
 
   submenuClickHandler() {
     const { triggerAction, action } = this.props;
-    const { submenuInput1, submenuInput2 } = this.state;
-    const inputs = submenuInput1 && submenuInput2 && [submenuInput1, submenuInput2];
-    triggerAction(action.title, inputs);
+    const { submenuInputs } = this.state;
+    triggerAction(action.title, submenuInputs);
   }
 
   render() {
     const { action } = this.props;
-    const { submenuVisible, submenuInput1, submenuInput2 } = this.state;
+    const { submenuVisible, submenuInputs } = this.state;
+    let currentInputIndex = -1;
     return (
       <span className="actionButtonContainer">
         <span
@@ -62,24 +71,44 @@ export class ActionButton extends Component {
         </span>
         { submenuVisible && (
           <div>
-            <input
-              name="submenuInput1"
-              onChange={this.onInputChange}
-              value={submenuInput1}
-            />
-            <input
-              name="submenuInput2"
-              onChange={this.onInputChange}
-              value={submenuInput2}
-            />
-            <span
-              onClick={this.submenuClickHandler}
-              onKeyPress={this.submenuClickHanlder}
-              role="button"
-              tabIndex="0"
-            >
-              OK
-            </span>
+            { action.submenuStructure.map((item, i) => {
+              switch (item.type) {
+              case 'input':
+                currentInputIndex += 1;
+                return (
+                  <input
+                    name={currentInputIndex}
+                    onChange={this.onInputChange}
+                    value={submenuInputs[currentInputIndex]}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`${i}`}
+                  />
+                );
+              case 'text': return (
+                <span
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`${i}`}
+                >
+                  {item.content}
+                </span>
+              );
+              case 'button': return (
+                <span
+                  onClick={item.triggerAction && this.submenuClickHandler}
+                  onKeyPress={item.triggerAction && this.submenuClickHanlder}
+                  role="button"
+                  tabIndex="0"
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`${i}`}
+                >
+                  {item.text}
+                </span>
+              );
+              default:
+                return null;
+              }
+            })
+            }
           </div>
         )}
       </span>
