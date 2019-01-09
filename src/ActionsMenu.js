@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './OperatorExpression.less';
 import ActionButton from './ActionButton';
-import { actionsForOperator, actionsForConstant } from './ListsOfActions';
+import actions from './ListsOfActions';
 
 export const ActionsMenu = (props) => {
   const { selectedNode: { type } } = props;
-  const actionsList = (type === 'OperatorNode') ? actionsForOperator : actionsForConstant;
+  const actionsList = actions[type];
 
   return actionsList ? (
     <div className="actionsMenuContainer">
