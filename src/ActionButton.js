@@ -7,7 +7,6 @@ export class ActionButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      submenuVisible: false,
       submenuInputs: [],
     };
     this.mainActionClickHandler = this.mainActionClickHandler.bind(this);
@@ -33,9 +32,7 @@ export class ActionButton extends Component {
 
   mainActionClickHandler() {
     const { triggerAction, action, selectedExpressionNode: { value } } = this.props;
-    const { submenuVisible } = this.state;
     if (['SplitToSum', 'SplitToProduct'].includes(action.id)) {
-      this.setState({ submenuVisible: !submenuVisible });
       let inputs = [];
       if (action.inputsRelation) {
         inputs = [
@@ -58,8 +55,8 @@ export class ActionButton extends Component {
   }
 
   render() {
-    const { action } = this.props;
-    const { submenuVisible, submenuInputs } = this.state;
+    const { action, selected } = this.props;
+    const { submenuInputs } = this.state;
     let currentInputIndex = -1;
     return (
       <span className="actionButtonContainer">
@@ -72,7 +69,7 @@ export class ActionButton extends Component {
         >
           {action.title}
         </span>
-        { submenuVisible && (
+        { selected && (
           <div>
             { action.submenuStructure.map((item, i) => {
               switch (item.type) {

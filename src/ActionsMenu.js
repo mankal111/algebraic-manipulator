@@ -15,6 +15,7 @@ export const ActionsMenu = (props) => {
         <ActionButton
           action={action}
           key={action.id}
+          selected={true}
         />
       ))}
     </div>
