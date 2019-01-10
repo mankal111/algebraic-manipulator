@@ -69,7 +69,7 @@ export class ActionButton extends Component {
         >
           {action.title}
         </span>
-        { selected && (
+        { selected && action.submenuStructure && (
           <div>
             { action.submenuStructure.map((item, i) => {
               switch (item.type) {
