@@ -1,26 +1,45 @@
 import { connect } from 'react-redux';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './OperatorExpression.less';
 import ActionButton from './ActionButton';
 import actions from './ListsOfActions';
 
-export const ActionsMenu = (props) => {
-  const { selectedNode: { type } } = props;
-  const actionsList = actions[type];
+export class ActionsMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedAction: null,
+    };
+    this.selectAction = this.selectAction.bind(this);
+  }
 
-  return actionsList ? (
-    <div className="actionsMenuContainer">
-      {actionsList.map(action => (
-        <ActionButton
-          action={action}
-          key={action.id}
-          selected={true}
-        />
-      ))}
-    </div>
-  ) : null;
-};
+  selectAction(actionName) {
+    const { selectedAction } = this.state;
+    this.setState({
+      selectedAction: actionName === selectedAction ? null : actionName,
+    });
+  }
+
+  render() {
+    const { selectedNode: { type } } = this.props;
+    const { selectedAction } = this.state;
+    const actionsList = actions[type];
+
+    return actionsList ? (
+      <div className="actionsMenuContainer">
+        {actionsList.map(action => (
+          <ActionButton
+            action={action}
+            key={action.id}
+            selected={action.id === selectedAction}
+            select={this.selectAction}
+          />
+        ))}
+      </div>
+    ) : null;
+  }
+}
 
 export const mapStateToProps = state => ({
   selectedNode: state.expression.selectedExpressionNode,

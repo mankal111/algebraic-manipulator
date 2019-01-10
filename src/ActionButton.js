@@ -30,8 +30,14 @@ export class ActionButton extends Component {
     this.setState({ submenuInputs: newInputs });
   }
 
-  mainActionClickHandler() {
-    const { triggerAction, action, selectedExpressionNode: { value } } = this.props;
+  mainActionClickHandler(event) {
+    const {
+      triggerAction,
+      action,
+      selectedExpressionNode: { value },
+      select,
+    } = this.props;
+    select(event.target.getAttribute('name'));
     if (['SplitToSum', 'SplitToProduct'].includes(action.id)) {
       let inputs = [];
       if (action.inputsRelation) {
@@ -62,6 +68,7 @@ export class ActionButton extends Component {
       <span className="actionButtonContainer">
         <span
           className="actionButton"
+          name={action.id}
           onClick={this.mainActionClickHandler}
           onKeyPress={this.mainActionClickHandler}
           role="button"
@@ -129,6 +136,7 @@ ActionButton.propTypes = {
   triggerAction: PropTypes.func.isRequired,
   selectedExpressionNode: PropTypes.shape({}),
   selected: PropTypes.bool,
+  select: PropTypes.func.isRequired,
 };
 
 ActionButton.defaultProps = {
