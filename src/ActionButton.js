@@ -128,10 +128,12 @@ ActionButton.propTypes = {
   action: PropTypes.shape().isRequired,
   triggerAction: PropTypes.func.isRequired,
   selectedExpressionNode: PropTypes.shape({}),
+  selected: PropTypes.bool,
 };
 
 ActionButton.defaultProps = {
   selectedExpressionNode: {},
+  selected: false,
 };
 
 export default connect(
