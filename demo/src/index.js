@@ -8,7 +8,7 @@ import AlgebraicManipulator from '../../src';
 class Demo extends Component {
   constructor(props) {
     super(props);
-    const initialInput = '2x + (4 + 3y)';
+    const initialInput = '(2 + 4) + (4 + 3)';
     this.state = {
       input: initialInput,
       callbackExpression: '',
