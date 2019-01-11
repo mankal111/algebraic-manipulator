@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { performAction } from './actions/expressionActions';
+import './ActionButton.less';
 
 export class ActionButton extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ export class ActionButton extends Component {
   submenuClickHandler(event) {
     const { triggerAction, action } = this.props;
     const { submenuInputs } = this.state;
-    const args = submenuInputs.length || [event.currentTarget.dataset.value];
+    const args = submenuInputs.length ? submenuInputs : [event.currentTarget.dataset.value];
     triggerAction(action.title, args);
   }
 
@@ -66,8 +67,8 @@ export class ActionButton extends Component {
     const { submenuInputs } = this.state;
     let currentInputIndex = -1;
     return (
-      <span className="actionButtonContainer">
-        <span
+      <div className="actionButtonContainer">
+        <div
           className="actionButton"
           name={action.id}
           onClick={this.mainActionClickHandler}
@@ -76,9 +77,9 @@ export class ActionButton extends Component {
           tabIndex="0"
         >
           {action.title}
-        </span>
+        </div>
         { selected && action.submenuStructure && (
-          <div>
+          <div className="submenu">
             { action.submenuStructure.map((item, i) => {
               switch (item.type) {
               case 'input':
@@ -102,6 +103,7 @@ export class ActionButton extends Component {
               );
               case 'button': return (
                 <span
+                  className="button"
                   onClick={item.triggerAction && this.submenuClickHandler}
                   onKeyPress={item.triggerAction && this.submenuClickHanlder}
                   role="button"
@@ -120,7 +122,7 @@ export class ActionButton extends Component {
             }
           </div>
         )}
-      </span>
+      </div>
     );
   }
 }
