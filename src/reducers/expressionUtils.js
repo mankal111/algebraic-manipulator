@@ -20,7 +20,7 @@ export const performActionOnTree = (state, actionName, args = []) => {
   const newTree = state.expressionTree.cloneDeep();
   const selectedPath = getTrimmedPath(state.selectedExpressionPath);
   const selectedNode = state.selectedExpressionNode;
-  const parsedArgs = args.map(arg => arg.type && math.parse(arg).eval());
+  const parsedArgs = args.map(arg => (arg.type ? math.parse(arg).eval() : arg));
   let newNode = selectedNode.cloneDeep();
   switch (actionName) {
   case 'Commutate':
@@ -42,7 +42,7 @@ export const performActionOnTree = (state, actionName, args = []) => {
     break;
   case 'Associative':
     if (selectedNode.fn === 'add' || selectedNode.fn === 'multiply') {
-      if (selectedNode.args[0].type === 'ParenthesisNode' && selectedNode.args[0].content.fn === selectedNode.fn) {
+      if (parsedArgs[0] === 'left' && selectedNode.args[0].type === 'ParenthesisNode' && selectedNode.args[0].content.fn === selectedNode.fn) {
         newNode = new math.expression.node.OperatorNode(
           selectedNode.op,
           selectedNode.fn,
@@ -60,7 +60,7 @@ export const performActionOnTree = (state, actionName, args = []) => {
             ),
           ],
         );
-      } else if (selectedNode.args[1].type === 'ParenthesisNode' && selectedNode.args[1].content.fn === selectedNode.fn) {
+      } else if (parsedArgs[0] === 'right' && selectedNode.args[1].type === 'ParenthesisNode' && selectedNode.args[1].content.fn === selectedNode.fn) {
         newNode = new math.expression.node.OperatorNode(
           selectedNode.op,
           selectedNode.fn,
