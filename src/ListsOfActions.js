@@ -2,7 +2,24 @@ export default {
   OperatorNode: [
     { title: 'Evaluate', id: 'Evaluate' },
     { title: 'Commutate', id: 'Commutate' },
-    { title: 'Associative', id: 'Associative' },
+    {
+      title: 'Associative',
+      id: 'Associative',
+      submenuStructure: [
+        {
+          type: 'button',
+          text: 'a*(b*c)',
+          triggerAction: true,
+          value: 'right',
+        },
+        {
+          type: 'button',
+          text: '(a*b)*c',
+          triggerAction: true,
+          value: 'left',
+        },
+      ],
+    },
   ],
   ConstantNode: [
     {

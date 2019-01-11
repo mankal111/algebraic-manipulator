@@ -54,10 +54,11 @@ export class ActionButton extends Component {
     }
   }
 
-  submenuClickHandler() {
+  submenuClickHandler(event) {
     const { triggerAction, action } = this.props;
     const { submenuInputs } = this.state;
-    triggerAction(action.title, submenuInputs);
+    const args = submenuInputs.length || [event.currentTarget.dataset.value];
+    triggerAction(action.title, args);
   }
 
   render() {
@@ -107,6 +108,7 @@ export class ActionButton extends Component {
                   tabIndex="0"
                   // eslint-disable-next-line react/no-array-index-key
                   key={`${i}`}
+                  data-value={item.value}
                 >
                   {item.text}
                 </span>

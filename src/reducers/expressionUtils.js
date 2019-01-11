@@ -20,7 +20,7 @@ export const performActionOnTree = (state, actionName, args = []) => {
   const newTree = state.expressionTree.cloneDeep();
   const selectedPath = getTrimmedPath(state.selectedExpressionPath);
   const selectedNode = state.selectedExpressionNode;
-  const parsedArgs = args.map(arg => math.parse(arg).eval());
+  const parsedArgs = args.map(arg => arg.type && math.parse(arg).eval());
   let newNode = selectedNode.cloneDeep();
   switch (actionName) {
   case 'Commutate':
