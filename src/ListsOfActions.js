@@ -8,13 +8,13 @@ export default {
       submenuStructure: [
         {
           type: 'button',
-          text: 'a*(b*c) => (a*b)*c',
+          text: 'a$op$(b$op$c) → (a$op$b)$op$c',
           triggerAction: true,
           value: 'right',
         },
         {
           type: 'button',
-          text: '(a*b)*c => a*(b*c)',
+          text: '(a$op$b)$op$c → a$op$(b$op$c)',
           triggerAction: true,
           value: 'left',
         },

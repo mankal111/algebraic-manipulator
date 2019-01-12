@@ -63,7 +63,7 @@ export class ActionButton extends Component {
   }
 
   render() {
-    const { action, selected } = this.props;
+    const { action, selected, selectedExpressionNode: { op } } = this.props;
     const { submenuInputs } = this.state;
     let currentInputIndex = -1;
     return (
@@ -112,7 +112,7 @@ export class ActionButton extends Component {
                   key={`${i}`}
                   data-value={item.value}
                 >
-                  {item.text}
+                  {item.text.replace(/\$op\$/g, op === '*' ? '·' : op)}
                 </span>
               );
               default:
