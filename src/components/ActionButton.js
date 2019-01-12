@@ -86,6 +86,7 @@ export class ActionButton extends Component {
                 currentInputIndex += 1;
                 return (
                   <input
+                    className="input"
                     name={currentInputIndex}
                     onChange={this.onInputChange}
                     value={submenuInputs[currentInputIndex]}
