@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './OperatorExpression.less';
 import ActionButton from './ActionButton';
-import actions from './ListsOfActions';
+import actions from '../ListsOfActions';
 
 export class ActionsMenu extends Component {
   constructor(props) {

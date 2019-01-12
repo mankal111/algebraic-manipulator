@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import MainComponent from './MainComponent';
+import MainComponent from './components/MainComponent';
 
 const store = configureStore();
 
