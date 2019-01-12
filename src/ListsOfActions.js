@@ -39,7 +39,7 @@ export default {
       inputsRelation: (constant, input) => constant / input,
       submenuStructure: [
         { type: 'input' },
-        { type: 'text', content: 'X' },
+        { type: 'text', content: '·' },
         { type: 'input' },
         { type: 'button', text: 'split', triggerAction: true },
       ],
