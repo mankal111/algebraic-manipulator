@@ -21,7 +21,6 @@ export class ActionButton extends Component {
     const { submenuInputs } = this.state;
     name = Number.parseInt(name, 10);
     value = Number.parseInt(value, 10) || 0;
-    console.log(value)
     const otherName = name === 0 ? 1 : 0;
     const otherValue = action.inputsRelation
       ? action.inputsRelation(selectedExpressionNode, value)
