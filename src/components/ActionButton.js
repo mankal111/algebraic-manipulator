@@ -17,14 +17,17 @@ export class ActionButton extends Component {
 
   onInputChange(event) {
     const { action, selectedExpressionNode } = this.props;
-    const { name, value } = event.target;
+    let { name, value } = event.target;
     const { submenuInputs } = this.state;
-    const otherName = name === 1 ? 2 : 1;
+    name = Number.parseInt(name, 10);
+    value = Number.parseInt(value, 10) || 0;
+    console.log(value)
+    const otherName = name === 0 ? 1 : 0;
     const otherValue = action.inputsRelation
       ? action.inputsRelation(selectedExpressionNode, value)
       : null;
     const newInputs = [...submenuInputs];
-    newInputs[name] = Number.parseInt(value, 10);
+    newInputs[name] = value;
     if (otherValue !== null) {
       newInputs[otherName] = otherValue;
     }
