@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import math from 'mathjs';
+import Paper from '@material-ui/core/Paper';
 import Expression from './Expression';
 import ActionsMenu from './ActionsMenu';
 import { setExpressionTree } from '../actions/expressionActions';
@@ -29,7 +30,7 @@ export class MainComponent extends Component {
   render() {
     const { expressionTree } = this.props;
     return (
-      <div className="mainContainer">
+      <Paper>
         <div className="expressionContainer">
           {
             <Expression
@@ -39,7 +40,7 @@ export class MainComponent extends Component {
           }
         </div>
         <ActionsMenu />
-      </div>
+      </Paper>
     );
   }
 }
