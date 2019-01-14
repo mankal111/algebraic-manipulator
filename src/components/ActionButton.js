@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { performAction } from '../actions/expressionActions';
+import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import { performAction } from '../actions/expressionActions';
 import './ActionButton.less';
 
 export class ActionButton extends Component {
@@ -78,8 +79,6 @@ export class ActionButton extends Component {
           name={action.id}
           onClick={this.mainActionClickHandler}
           onKeyPress={this.mainActionClickHandler}
-          role="button"
-          tabIndex="0"
         >
           {action.title}
         </Button>
@@ -90,13 +89,14 @@ export class ActionButton extends Component {
               case 'input':
                 currentInputIndex += 1;
                 return (
-                  <input
-                    className="input"
+                  <Input
                     name={currentInputIndex}
                     onChange={this.onInputChange}
                     value={submenuInputs[currentInputIndex]}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${i}`}
+                    margin="normal"
+                    variant="filled"
                   />
                 );
               case 'text': return (
