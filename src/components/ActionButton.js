@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { performAction } from '../actions/expressionActions';
+import Button from '@material-ui/core/Button';
 import './ActionButton.less';
 
 export class ActionButton extends Component {
@@ -40,7 +41,7 @@ export class ActionButton extends Component {
       selectedExpressionNode: { value },
       select,
     } = this.props;
-    select(event.target.getAttribute('name'));
+    select(event.currentTarget.name);
     if (['SplitToSum', 'SplitToProduct'].includes(action.id)) {
       let inputs = [];
       if (action.inputsRelation) {
@@ -70,8 +71,10 @@ export class ActionButton extends Component {
     let currentInputIndex = -1;
     return (
       <div className="actionButtonContainer">
-        <div
+        <Button
           className="actionButton"
+          variant="contained"
+          color="primary"
           name={action.id}
           onClick={this.mainActionClickHandler}
           onKeyPress={this.mainActionClickHandler}
@@ -79,7 +82,7 @@ export class ActionButton extends Component {
           tabIndex="0"
         >
           {action.title}
-        </div>
+        </Button>
         { selected && action.submenuStructure && (
           <div className="submenu">
             { action.submenuStructure.map((item, i) => {
@@ -105,18 +108,17 @@ export class ActionButton extends Component {
                 </span>
               );
               case 'button': return (
-                <span
-                  className="button"
+                <Button
+                  color="secondary"
+                  variant="contained"
                   onClick={item.triggerAction && this.submenuClickHandler}
                   onKeyPress={item.triggerAction && this.submenuClickHanlder}
-                  role="button"
-                  tabIndex="0"
                   // eslint-disable-next-line react/no-array-index-key
                   key={`${i}`}
                   data-value={item.value}
                 >
                   {item.text.replace(/\$op\$/g, op === '*' ? '·' : op)}
-                </span>
+                </Button>
               );
               default:
                 return null;
