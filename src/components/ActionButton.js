@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
+import { Input, Button } from '@material-ui/core';
 import { performAction } from '../actions/expressionActions';
 import './ActionButton.less';
 
