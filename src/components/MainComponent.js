@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import math from 'mathjs';
-import Paper from '@material-ui/core/Paper';
+import { Paper, withStyles } from '@material-ui/core';
 import Expression from './Expression';
 import ActionsMenu from './ActionsMenu';
 import { setExpressionTree } from '../actions/expressionActions';
-import './MainComponent.less';
+
+const styles = {
+  root: {
+    margin: 18,
+    padding: 18,
+    maxWidth: 400,
+    fontSize: 35,
+  },
+};
 
 export class MainComponent extends Component {
   componentDidMount() {
@@ -28,17 +36,15 @@ export class MainComponent extends Component {
   }
 
   render() {
-    const { expressionTree } = this.props;
+    const { expressionTree, classes } = this.props;
     return (
-      <Paper>
-        <div className="expressionContainer">
-          {
-            <Expression
-              treeRoot={expressionTree}
-              path="Root"
-            />
-          }
-        </div>
+      <Paper className={classes.root}>
+        {
+          <Expression
+            treeRoot={expressionTree}
+            path="Root"
+          />
+        }
         <ActionsMenu />
       </Paper>
     );
@@ -58,6 +64,7 @@ MainComponent.propTypes = {
   onExpressionChange: PropTypes.func.isRequired,
   setExpressionTreeOnState: PropTypes.func.isRequired,
   expressionTree: PropTypes.shape({}),
+  classes: PropTypes.shape({}).isRequired,
 };
 
 MainComponent.defaultProps = {
@@ -68,4 +75,4 @@ MainComponent.defaultProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MainComponent);
+)(withStyles(styles)(MainComponent));
