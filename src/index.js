@@ -6,9 +6,10 @@ import MainComponent from './components/MainComponent';
 
 const store = configureStore();
 
-const Index = ({ expression, onExpressionChange }) => (
+const Index = ({ expression, onExpressionChange, title }) => (
   <Provider store={store}>
     <MainComponent
+      title={title}
       expression={expression}
       onExpressionChange={onExpressionChange}
     />

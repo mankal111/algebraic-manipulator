@@ -58,6 +58,7 @@ class Demo extends Component {
         </div>
         { this.errorComponent() }
         <AlgebraicManipulator
+          title="Sample expression"
           expression={componentExpression}
           onExpressionChange={this.ExpressionChanged}
         />
