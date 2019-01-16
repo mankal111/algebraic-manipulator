@@ -14,6 +14,12 @@ const styles = {
     maxWidth: 400,
     fontSize: 35,
   },
+  expressionContainer: {
+    textAlign: 'center',
+  },
+  expression: {
+    display: 'inlineBlock',
+  }
 };
 
 export class MainComponent extends Component {
@@ -39,12 +45,12 @@ export class MainComponent extends Component {
     const { expressionTree, classes } = this.props;
     return (
       <Paper className={classes.root}>
-        {
+        <div className={classes.expressionContainer}>
           <Expression
             treeRoot={expressionTree}
             path="Root"
           />
-        }
+        </div>
         <ActionsMenu />
       </Paper>
     );
