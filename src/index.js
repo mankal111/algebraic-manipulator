@@ -17,11 +17,13 @@ const Index = ({ expression, onExpressionChange, title }) => (
 );
 
 Index.propTypes = {
+  title: PropTypes.string,
   expression: PropTypes.string,
   onExpressionChange: PropTypes.func,
 };
 
 Index.defaultProps = {
+  title: '',
   expression: '',
   onExpressionChange: () => {},
 };
