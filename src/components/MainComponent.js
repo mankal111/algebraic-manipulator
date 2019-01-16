@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import math from 'mathjs';
-import { Paper, AppBar, Toolbar, Typography, withStyles } from '@material-ui/core';
+import {
+  Paper,
+  AppBar,
+  Toolbar,
+  Typography,
+  withStyles,
+} from '@material-ui/core';
 import Expression from './Expression';
 import ActionsMenu from './ActionsMenu';
 import { setExpressionTree } from '../actions/expressionActions';
