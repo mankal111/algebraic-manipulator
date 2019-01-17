@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import Expression from './Expression';
 import ActionsMenu from './ActionsMenu';
-import { setExpressionTree } from '../actions/expressionActions';
+import { setExpressionTree, setSelectedExpression } from '../actions/expressionActions';
 
 const styles = {
   root: {
@@ -52,9 +52,14 @@ export class MainComponent extends Component {
   }
 
   initialize() {
-    const { expression, setExpressionTreeOnState } = this.props;
+    const {
+      expression,
+      setExpressionTreeOnState,
+      resetSelectedExpressionOnState,
+    } = this.props;
     const expressionTree = math.parse(expression);
     setExpressionTreeOnState(expressionTree);
+    resetSelectedExpressionOnState();
   }
 
   render() {
@@ -96,6 +101,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setExpressionTreeOnState: expressionTree => dispatch(setExpressionTree(expressionTree)),
+  resetSelectedExpressionOnState: () => dispatch(setSelectedExpression()),
 });
 
 MainComponent.propTypes = {
@@ -103,6 +109,7 @@ MainComponent.propTypes = {
   expression: PropTypes.string,
   onExpressionChange: PropTypes.func.isRequired,
   setExpressionTreeOnState: PropTypes.func.isRequired,
+  resetSelectedExpressionOnState: PropTypes.func.isRequired,
   expressionTree: PropTypes.shape({}),
   classes: PropTypes.shape({}).isRequired,
 };
