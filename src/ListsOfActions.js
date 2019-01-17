@@ -8,13 +8,13 @@ export default {
       submenuStructure: [
         {
           type: 'button',
-          text: 'a$op$(b$op$c) → (a$op$b)$op$c',
+          text: '$a#Op#(b#op#c)\\rightarrow(a#Op#b)#op#c$',
           triggerAction: true,
           value: 'right',
         },
         {
           type: 'button',
-          text: '(a$op$b)$op$c → a$op$(b$op$c)',
+          text: '$(a#op#b)#Op#c \\rightarrow a#op#(b#Op#c)$',
           triggerAction: true,
           value: 'left',
         },

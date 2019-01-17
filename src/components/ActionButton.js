@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Latex from 'react-latex-next';
 import { Input, Button } from '@material-ui/core';
 import { performAction } from '../actions/expressionActions';
 import './ActionButton.less';
+import 'katex/dist/katex.min.css';
 
 export class ActionButton extends Component {
   constructor(props) {
@@ -116,7 +118,13 @@ export class ActionButton extends Component {
                   key={`${i}`}
                   data-value={item.value}
                 >
-                  {item.text.replace(/\$op\$/g, op === '*' ? '·' : op)}
+                  <Latex>
+                    {
+                      item.text
+                        .replace(/#Op#/g, '\\colorbox{yellowgreen}{\\textcolor{black}{#op#}}')
+                        .replace(/#op#/g, op === '*' ? '·' : op)
+                    }
+                  </Latex>
                 </Button>
               );
               default:
