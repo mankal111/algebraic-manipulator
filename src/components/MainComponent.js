@@ -6,6 +6,7 @@ import {
   Paper,
   AppBar,
   Toolbar,
+  Button,
   Typography,
   withStyles,
 } from '@material-ui/core';
@@ -16,6 +17,10 @@ import { setExpressionTree } from '../actions/expressionActions';
 const styles = {
   root: {
     maxWidth: 400,
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
   },
   expressionContainer: {
     textAlign: 'center',
@@ -29,6 +34,11 @@ const styles = {
 };
 
 export class MainComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.initialize = this.initialize.bind(this);
+  }
+
   componentDidMount() {
     this.initialize();
   }
@@ -53,9 +63,19 @@ export class MainComponent extends Component {
       <Paper className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" color="inherit">
+            <Typography
+              variant="h6"
+              color="inherit"
+              className={classes.grow}
+            >
               {title}
             </Typography>
+            <Button
+              color="inherit"
+              onClick={this.initialize}
+            >
+              Reset
+            </Button>
           </Toolbar>
         </AppBar>
         <div className={classes.expressionContainer}>
