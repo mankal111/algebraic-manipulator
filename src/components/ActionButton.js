@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Latex from 'react-latex-next';
-import { Input, Button } from '@material-ui/core';
+import {
+  Input,
+  Button,
+  MenuList,
+  Popper,
+  Grow,
+  Paper,
+} from '@material-ui/core';
 import { performAction } from '../actions/expressionActions';
 import './ActionButton.less';
 import 'katex/dist/katex.min.css';
@@ -74,6 +81,9 @@ export class ActionButton extends Component {
     return (
       <div className="actionButtonContainer">
         <Button
+          buttonRef={(node) => {
+            this.anchorEl = node;
+          }}
           className="actionButton"
           variant="contained"
           color="primary"
@@ -83,57 +93,72 @@ export class ActionButton extends Component {
         >
           {action.title}
         </Button>
-        { selected && action.submenuStructure && (
-          <div className="submenu">
-            { action.submenuStructure.map((item, i) => {
-              switch (item.type) {
-              case 'input':
-                currentInputIndex += 1;
-                return (
-                  <Input
-                    name={currentInputIndex}
-                    onChange={this.onInputChange}
-                    value={submenuInputs[currentInputIndex]}
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={`${i}`}
-                    margin="normal"
-                    variant="filled"
-                  />
-                );
-              case 'text': return (
-                <span
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`${i}`}
-                >
-                  {item.content}
-                </span>
-              );
-              case 'button': return (
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  onClick={item.triggerAction && this.submenuClickHandler}
-                  onKeyPress={item.triggerAction && this.submenuClickHanlder}
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`${i}`}
-                  data-value={item.value}
-                >
-                  <Latex>
-                    {
-                      item.text
-                        .replace(/#Op#/g, '\\colorbox{yellowgreen}{\\textcolor{black}{#op#}}')
-                        .replace(/#op#/g, op === '*' ? '·' : op)
+        <Popper
+          open={selected && action.submenuStructure}
+          anchorEl={this.anchorEl}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              id="menu-list-grow"
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
+              <Paper>
+                <MenuList>
+                  { action.submenuStructure.map((item, i) => {
+                    switch (item.type) {
+                    case 'input':
+                      currentInputIndex += 1;
+                      return (
+                        <Input
+                          name={currentInputIndex}
+                          onChange={this.onInputChange}
+                          value={submenuInputs[currentInputIndex]}
+                          // eslint-disable-next-line react/no-array-index-key
+                          key={`${i}`}
+                          margin="normal"
+                          variant="filled"
+                        />
+                      );
+                    case 'text': return (
+                      <span
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={`${i}`}
+                      >
+                        {item.content}
+                      </span>
+                    );
+                    case 'button': return (
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        onClick={item.triggerAction && this.submenuClickHandler}
+                        onKeyPress={item.triggerAction && this.submenuClickHanlder}
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={`${i}`}
+                        data-value={item.value}
+                      >
+                        <Latex>
+                          {
+                            item.text
+                              .replace(/#Op#/g, '\\colorbox{yellowgreen}{\\textcolor{black}{#op#}}')
+                              .replace(/#op#/g, op === '*' ? '·' : op)
+                          }
+                        </Latex>
+                      </Button>
+                    );
+                    default:
+                      return null;
                     }
-                  </Latex>
-                </Button>
-              );
-              default:
-                return null;
-              }
-            })
-            }
-          </div>
-        )}
+                  })
+                  }
+                </MenuList>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
       </div>
     );
   }
