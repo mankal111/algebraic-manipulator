@@ -11,7 +11,6 @@ import {
   Paper,
 } from '@material-ui/core';
 import { performAction } from '../actions/expressionActions';
-import './ActionButton.less';
 import 'katex/dist/katex.min.css';
 
 export class ActionButton extends Component {
