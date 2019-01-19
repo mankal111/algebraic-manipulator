@@ -85,7 +85,7 @@ export class ActionButton extends Component {
           }}
           className="actionButton"
           variant="contained"
-          color="primary"
+          color="secondary"
           name={action.id}
           onClick={this.mainActionClickHandler}
           onKeyPress={this.mainActionClickHandler}

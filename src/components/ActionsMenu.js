@@ -1,9 +1,17 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './OperatorExpression.less';
+import { withStyles } from '@material-ui/core';
 import ActionButton from './ActionButton';
 import actions from '../ListsOfActions';
+
+const styles = {
+  menu: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    padding: 19,
+  },
+};
 
 export class ActionsMenu extends Component {
   constructor(props) {
@@ -22,12 +30,12 @@ export class ActionsMenu extends Component {
   }
 
   render() {
-    const { selectedNode: { type } } = this.props;
+    const { selectedNode: { type }, classes } = this.props;
     const { selectedAction } = this.state;
     const actionsList = actions[type];
 
     return actionsList ? (
-      <div className="actionsMenuContainer">
+      <div className={classes.menu}>
         {actionsList.map(action => (
           <ActionButton
             action={action}
@@ -47,6 +55,7 @@ export const mapStateToProps = state => ({
 
 ActionsMenu.propTypes = {
   selectedNode: PropTypes.shape(),
+  classes: PropTypes.shape({}).isRequired,
 };
 
 ActionsMenu.defaultProps = {
@@ -55,4 +64,4 @@ ActionsMenu.defaultProps = {
 
 export default connect(
   mapStateToProps,
-)(ActionsMenu);
+)(withStyles(styles)(ActionsMenu));
