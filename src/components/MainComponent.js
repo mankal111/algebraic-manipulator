@@ -8,6 +8,7 @@ import {
   Toolbar,
   Button,
   Typography,
+  Divider,
   withStyles,
 } from '@material-ui/core';
 import Expression from './Expression';
@@ -89,6 +90,7 @@ export class MainComponent extends Component {
             path="Root"
           />
         </div>
+        <Divider variant="middle" />
         <ActionsMenu />
       </Paper>
     );
