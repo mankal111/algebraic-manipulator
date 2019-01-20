@@ -9,7 +9,7 @@ const styles = {
   menu: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    padding: 19,
+    padding: 9,
   },
 };
 
