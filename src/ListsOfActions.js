@@ -7,13 +7,13 @@ export default {
       id: 'Associative',
       submenuStructure: [
         {
-          type: 'button',
+          type: 'menuItem',
           text: '$a#Op#(b#op#c)\\rightarrow(a#Op#b)#op#c$',
           triggerAction: true,
           value: 'right',
         },
         {
-          type: 'button',
+          type: 'menuItem',
           text: '$(a#op#b)#Op#c \\rightarrow a#op#(b#Op#c)$',
           triggerAction: true,
           value: 'left',

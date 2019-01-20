@@ -6,6 +6,7 @@ import {
   Input,
   Button,
   MenuList,
+  MenuItem,
   Popper,
   Grow,
   Paper,
@@ -129,10 +130,8 @@ export class ActionButton extends Component {
                         {item.content}
                       </span>
                     );
-                    case 'button': return (
-                      <Button
-                        color="secondary"
-                        variant="contained"
+                    case 'menuItem': return (
+                      <MenuItem
                         onClick={item.triggerAction && this.submenuClickHandler}
                         onKeyPress={item.triggerAction && this.submenuClickHanlder}
                         // eslint-disable-next-line react/no-array-index-key
@@ -146,6 +145,19 @@ export class ActionButton extends Component {
                               .replace(/#op#/g, op === '*' ? '·' : op)
                           }
                         </Latex>
+                      </MenuItem>
+                    );
+                    case 'button': return (
+                      <Button
+                        color="secondary"
+                        variant="contained"
+                        onClick={item.triggerAction && this.submenuClickHandler}
+                        onKeyPress={item.triggerAction && this.submenuClickHanlder}
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={`${i}`}
+                        data-value={item.value}
+                      >
+                        { item.text }
                       </Button>
                     );
                     default:
