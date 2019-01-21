@@ -1,8 +1,20 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core';
 import { setSelectedExpression } from '../actions/expressionActions';
-import './ConstantExpression.less';
+
+const styles = {
+  constantExpression: {
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'rgba(144, 137, 137, 0.15)',
+    },
+  },
+  focus: {
+    backgroundColor: 'paleturqouise',
+  },
+};
 
 export const ConstantExpression = (props) => {
   const {
@@ -10,11 +22,12 @@ export const ConstantExpression = (props) => {
     selectedExpressionPath,
     path,
     selectExpression,
+    classes,
   } = props;
   const isSelected = (selectedExpressionPath === path);
   return (
     <span
-      className={`constantExpression ${isSelected ? 'focus' : ''}`}
+      className={`${classes.constantExpression} ${isSelected ? 'focus' : ''}`}
       onClick={selectExpression}
       onKeyPress={selectExpression}
       role="radio"
@@ -39,6 +52,7 @@ ConstantExpression.propTypes = {
   path: PropTypes.string.isRequired,
   selectExpression: PropTypes.func.isRequired,
   selectedExpressionPath: PropTypes.string,
+  classes: PropTypes.shape({}).isRequired,
 };
 
 ConstantExpression.defaultProps = {
@@ -49,4 +63,4 @@ ConstantExpression.defaultProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ConstantExpression);
+)(withStyles(styles)(ConstantExpression));
