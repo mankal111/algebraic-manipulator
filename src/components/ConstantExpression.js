@@ -12,7 +12,7 @@ const styles = {
     },
   },
   focus: {
-    backgroundColor: 'paleturqouise',
+    backgroundColor: 'paleturquoise',
   },
 };
 
@@ -27,7 +27,7 @@ export const ConstantExpression = (props) => {
   const isSelected = (selectedExpressionPath === path);
   return (
     <span
-      className={`${classes.constantExpression} ${isSelected ? 'focus' : ''}`}
+      className={`${classes.constantExpression} ${isSelected ? classes.focus : ''}`}
       onClick={selectExpression}
       onKeyPress={selectExpression}
       role="radio"
