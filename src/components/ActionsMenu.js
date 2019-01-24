@@ -22,6 +22,10 @@ export class ActionsMenu extends Component {
     this.selectAction = this.selectAction.bind(this);
   }
 
+  componentWillReceiveProps() {
+    this.setState({ selectedAction: null });
+  }
+
   selectAction(actionName) {
     const { selectedAction } = this.state;
     this.setState({
