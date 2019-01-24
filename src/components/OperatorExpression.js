@@ -8,9 +8,6 @@ import Expression from './Expression';
 const styles = {
   focus: {
     backgroundColor: 'paleturquoise',
-    '&>.operator': {
-      backgroundColor: 'yellowgreen',
-    },
   },
   operator: {
     cursor: 'pointer',
@@ -18,6 +15,9 @@ const styles = {
       backgroundColor: 'rgba(144, 137, 137, 0.15)',
     },
   },
+  selectedOperator: {
+    backgroundColor: 'yellowgreen',
+  }
 };
 
 export const OperatorExpression = (props) => {
@@ -37,7 +37,7 @@ export const OperatorExpression = (props) => {
         path={`${path}.args[0]`}
       />
       <span
-        className={`${node.fn}Operator operator`}
+        className={`${classes.operator} ${isSelected ? classes.selectedOperator : ''}`}
         onClick={selectExpression}
         onKeyPress={selectExpression}
         role="radio"
