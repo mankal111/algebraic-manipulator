@@ -10,9 +10,19 @@ import {
   Popper,
   Grow,
   Paper,
+  withStyles,
 } from '@material-ui/core';
 import { performAction } from '../actions/expressionActions';
 import 'katex/dist/katex.min.css';
+
+const styles = {
+  input: {
+    width: 50,
+    '& input': {
+      textAlign: 'center',
+    },
+  },
+};
 
 export class ActionButton extends Component {
   constructor(props) {
@@ -75,7 +85,12 @@ export class ActionButton extends Component {
   }
 
   render() {
-    const { action, selected, selectedExpressionNode: { op } } = this.props;
+    const {
+      action,
+      selected,
+      selectedExpressionNode: { op },
+      classes,
+    } = this.props;
     const { submenuInputs } = this.state;
     let currentInputIndex = -1;
     return (
@@ -113,6 +128,7 @@ export class ActionButton extends Component {
                       currentInputIndex += 1;
                       return (
                         <Input
+                          className={classes.input}
                           name={currentInputIndex}
                           onChange={this.onInputChange}
                           value={submenuInputs[currentInputIndex]}
@@ -189,6 +205,7 @@ ActionButton.propTypes = {
   selectedExpressionNode: PropTypes.shape({}),
   selected: PropTypes.bool,
   select: PropTypes.func.isRequired,
+  classes: PropTypes.shape({}).isRequired,
 };
 
 ActionButton.defaultProps = {
@@ -199,4 +216,4 @@ ActionButton.defaultProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ActionButton);
+)(withStyles(styles)(ActionButton));
