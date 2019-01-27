@@ -22,6 +22,10 @@ const styles = {
       textAlign: 'center',
     },
   },
+  menuContainer: {
+    paddingLeft: 18,
+    paddingRight: 18,
+  },
 };
 
 export class ActionButton extends Component {
@@ -120,7 +124,7 @@ export class ActionButton extends Component {
               id="menu-list-grow"
               style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
             >
-              <Paper>
+              <Paper className={classes.menuContainer}>
                 <MenuList>
                   { action.submenuStructure.map((item, i) => {
                     switch (item.type) {
