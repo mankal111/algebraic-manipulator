@@ -1,7 +1,0 @@
-.errorContainer{background-color:pink;width:500px;border:solid 1px red;margin:9px}
-.operator{cursor:pointer}.focus{background-color:paleturquoise}.focus>.operator{background-color:yellowgreen}.operator:hover{background-color:rgba(144,137,137,0.15)}
-.constantExpression{cursor:pointer}.focus{background-color:paleturquoise}.constantExpression:hover{background-color:rgba(144,137,137,0.15)}
-.actionButtonContainer{display:-webkit-box;display:-ms-flexbox;display:flex;margin:9px}.actionButtonContainer .actionButton{padding:9px;margin:9px;cursor:pointer;border:solid 1px tomato}.actionButtonContainer .submenu{margin:18px}.actionButtonContainer .submenu .button{padding:9px;margin:18px;cursor:pointer;border:solid 1px orange}
-.expressionContainer{font-size:35px}
-
-/*# sourceMappingURL=demo.09e9a581.css.map*/
