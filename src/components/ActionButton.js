@@ -61,7 +61,7 @@ export class ActionButton extends Component {
       select,
     } = this.props;
     select(event.currentTarget.name);
-    if (['SplitToSum', 'SplitToProduct'].includes(action.id)) {
+    if (action.submenuStructure) {
       let inputs = [];
       if (action.inputsRelation) {
         inputs = [
